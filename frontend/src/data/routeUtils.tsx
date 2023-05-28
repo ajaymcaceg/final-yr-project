@@ -3,17 +3,20 @@ import { matchPath, useLocation } from "react-router-dom";
 export enum routeNames {
   HOME = "Home",
   FORM = "Form",
+  Search = "Search",
   PROFILE = "Profile",
   ANALYTICS = "Analytics",
 }
 export const routeNamePath = {
   [routeNames.HOME]: "/",
   [routeNames.FORM]: "/form",
+  [routeNames.Search]: "/search",
   [routeNames.ANALYTICS]: "/analytics",
   [routeNames.PROFILE]: "/profile",
 };
 export const routePaths = [
   { path: "/", name: routeNames.HOME },
+  { path: "/search", name: routeNames.Search },
 
   { path: "/analytics", name: routeNames.ANALYTICS },
   { path: "/form", name: routeNames.FORM },

@@ -9,6 +9,7 @@ import { Profile } from "./pages/Profile/Profile";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AddEditData } from "./components/AddEditData/AddEditData";
+import { SearchData } from "./components/SearchData/SearchData";
 
 function App() {
   // const isUserLoggediIn = isLoggedIn ? <Home /> : <Authentication />;
@@ -26,6 +27,11 @@ function App() {
         <Route
           path={routeNamePath[routeNames.FORM]}
           element={<AddEditData />}
+        />
+
+        <Route
+          path={routeNamePath[routeNames.Search]}
+          element={<SearchData />}
         />
 
         <Route path={routeNamePath[routeNames.PROFILE]} element={<Profile />} />

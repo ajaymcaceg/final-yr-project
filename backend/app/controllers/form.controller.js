@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
     ? { name: { $regex: new RegExp(name), $options: "i" } }
     : {};
 
-  Form.find(condition)
+  Form.find({})
     .then((data) => {
       res.send(data);
     })
