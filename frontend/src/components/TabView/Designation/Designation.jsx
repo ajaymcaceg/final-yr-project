@@ -111,7 +111,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name={["additionalResponsibilities", "upload"]}
                 label="Upload"
-                rules={[{ required: true, message: "Please upload a file" }]}
+                // rules={[{ required: true, message: "Please upload a file" }]}
               >
                 <Button>Upload</Button>
               </Form.Item>
@@ -156,9 +156,9 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
                           {...field}
                           name={[field.name, "letterUpload"]}
                           label="Letter Upload"
-                          rules={[
-                            { required: true, message: "Please upload a file" },
-                          ]}
+                          // rules={[
+                          //   { required: true, message: "Please upload a file" },
+                          // ]}
                         >
                           <Upload>
                             <Button>Upload Letter</Button>
