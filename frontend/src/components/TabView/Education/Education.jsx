@@ -13,24 +13,20 @@ import {
 import { UploadOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
-interface EducationFormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface EducationFormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-export const Education: React.FC<EducationFormProps> = ({
-  onSubmit,
-  setActiveKey,
-  nextTab,
-}) => {
-  const handleFormSubmit = (values: any) => {
+export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
+  const handleFormSubmit = (values) => {
     onSubmit({ education: values });
     setActiveKey(nextTab);
     console.log("Form values:", values);
   };
 
-  const getFileBase64Url = (file: any) => {
+  const getFileBase64Url = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => {

@@ -1,6 +1,6 @@
 import { message } from "antd";
 
-export const validateForm = (formData: FormData) => {
+export const validateForm = (formData) => {
   // Validate personalInfo
 
   if (!formData.personalInfo.firstName) {

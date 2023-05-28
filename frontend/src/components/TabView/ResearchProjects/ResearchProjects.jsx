@@ -1,64 +1,53 @@
 import React from "react";
 import { Form, Input, InputNumber, Button, Typography, Radio } from "antd";
 
-interface AwardsRecognitionFormProps {
-  onSubmit: (values: any[]) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
-
-const AwardsRecognition: React.FC<AwardsRecognitionFormProps> = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}) => {
-  const onFinish = (values: any) => {
+const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
+  const onFinish = (values) => {
     onSubmit(values);
     setActiveKey(nextTab);
   };
 
   return (
     <div>
+      {" "}
       <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
-          <span className="text-white"> Awards & Recognition</span>
+          <span className="text-white"> Reasearch projects</span>
         </Typography.Title>
       </div>
       <div className="w-full bg-[#7fc4fb] p-2">
         <Form
-          name="awardsRecognitionForm"
+          name="researchProjectForm"
           onFinish={onFinish}
           autoComplete="off"
           preserve={false}
           layout="vertical"
         >
-          <Form.List name="awardsRecognition">
+          <Form.List name="researchProjects">
             {(fields, { add, remove }) => (
               <>
                 {fields.map((field, index) => (
                   <div key={field.key}>
                     <Form.Item
-                      {...field}
-                      label={`Name of the Award`}
+                      label={`Name of the research project`}
                       name={[field.name, "name"]}
                       rules={[{ required: true, message: "Please enter name" }]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
-                        marginRight: "16px",
                       }}
+                      className="pr-6"
                     >
                       <Input />
                     </Form.Item>
 
                     <Form.Item
-                      {...field}
-                      label="Received From"
-                      name={[field.name, "receivedFrom"]}
+                      label="Funding Agency"
+                      name={[field.name, "fundingAgency"]}
                       rules={[
                         {
                           required: true,
-                          message: "Please enter received from",
+                          message: "Please enter funding agency",
                         },
                       ]}
                       style={{
@@ -68,23 +57,31 @@ const AwardsRecognition: React.FC<AwardsRecognitionFormProps> = ({
                     >
                       <Input />
                     </Form.Item>
+
                     <Form.Item
-                      label="Recognized Under"
-                      {...field}
-                      name={[field.name, "recognizedUnder"]}
+                      label="Type"
+                      name={[field.name, "type"]}
                       rules={[
-                        { required: true, message: "Please select an option" },
+                        { required: true, message: "Please enter value" },
                       ]}
                     >
-                      <Radio.Group>
-                        <Radio value="state">State Level</Radio>
-                        <Radio value="national">National Level</Radio>
-                        <Radio value="international">International Level</Radio>
+                      <Radio.Group className="ml-10">
+                        <Radio style={{ display: "block" }} value="Government">
+                          Government
+                        </Radio>
+                        <Radio
+                          style={{ display: "block" }}
+                          value="Non government"
+                        >
+                          Non government
+                        </Radio>
+                        <Radio style={{ display: "block" }} value="Others">
+                          Others
+                        </Radio>
                       </Radio.Group>
                     </Form.Item>
 
                     <Form.Item
-                      {...field}
                       label="Year"
                       name={[field.name, "year"]}
                       rules={[
@@ -92,34 +89,50 @@ const AwardsRecognition: React.FC<AwardsRecognitionFormProps> = ({
                       ]}
                       style={{
                         display: "inline-block",
-                        width: "calc(50% - 8px)",
+                        width: "calc(33% - 8px)",
                       }}
                     >
                       <InputNumber />
                     </Form.Item>
 
                     <Form.Item
-                      {...field}
-                      label="Incentives Received"
-                      name={[field.name, "incentivesReceived"]}
+                      label="Duration"
+                      name={[field.name, "duration"]}
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
                       style={{
                         display: "inline-block",
-                        width: "calc(50% - 8px)",
+                        width: "calc(33% - 8px)",
                       }}
                     >
-                      <Input />
+                      <InputNumber />
                     </Form.Item>
 
                     <Form.Item
-                      {...field}
+                      label="Funds Provided"
+                      name={[field.name, "fundsProvided"]}
+                      rules={[
+                        { required: true, message: "Please enter value" },
+                      ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(33% - 8px)",
+                      }}
+                    >
+                      <InputNumber />
+                    </Form.Item>
+
+                    <Form.Item
                       label="Relevant Documents"
                       name={[field.name, "relevantDocuments"]}
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(66% - 8px)",
+                      }}
                     >
                       <Input />
                     </Form.Item>
@@ -132,15 +145,13 @@ const AwardsRecognition: React.FC<AwardsRecognitionFormProps> = ({
                   </div>
                 ))}
 
-                <Form.Item>
-                  <Button
-                    // type="primary"
-                    onClick={() => add()}
-                    style={{ marginTop: "10px" }}
-                  >
-                    Add
-                  </Button>
-                </Form.Item>
+                <div className="block">
+                  <Form.Item>
+                    <Button onClick={() => add()} style={{ marginTop: "10px" }}>
+                      Add
+                    </Button>
+                  </Form.Item>
+                </div>
               </>
             )}
           </Form.List>
@@ -156,4 +167,4 @@ const AwardsRecognition: React.FC<AwardsRecognitionFormProps> = ({
   );
 };
 
-export default AwardsRecognition;
+export default ResearchProject;

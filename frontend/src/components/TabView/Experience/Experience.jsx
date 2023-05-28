@@ -11,20 +11,16 @@ import {
   Col,
 } from "antd";
 
-interface ExperienceFormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface ExperienceFormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-const Experience: React.FC<ExperienceFormProps> = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}) => {
+const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
   const [form] = Form.useForm();
   const [hasExp, sethasExp] = useState(false);
-  const handleFormSubmit = (values: any) => {
+  const handleFormSubmit = (values) => {
     onSubmit({ experience: values });
     setActiveKey(nextTab);
   };
@@ -34,10 +30,10 @@ const Experience: React.FC<ExperienceFormProps> = ({
     form.setFieldsValue({ experiences: [...experienceFields, {}] });
   };
 
-  const handleRemove = (index: number) => {
+  const handleRemove = (index) => {
     const experienceFields = form.getFieldValue("experiences") || [];
     form.setFieldsValue({
-      experiences: experienceFields.filter((_: any, i: number) => i !== index),
+      experiences: experienceFields.filter((_, i) => i !== index),
     });
   };
 

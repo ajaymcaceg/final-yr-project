@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import { message } from "antd";
 
-type formState = {
-  form: FormData[];
-};
+// type formState = {
+//   form: FormData[];
+// };
 
-const initialState: formState = {
+const initialState = {
   form: [],
 };
 
@@ -14,7 +14,7 @@ const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
-    setForm: (state: formState, action: PayloadAction<FormData[]>) => {
+    setForm: (state, action) => {
       state.form = action.payload;
     },
   },

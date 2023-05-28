@@ -1,16 +1,11 @@
-import { Middleware } from "@reduxjs/toolkit";
 import { message } from "antd";
 import axios from "axios";
 import { URL } from "../../env";
 
-interface MiddlewareProps {
-  type: string;
-  payload: any;
-}
-const api: Middleware =
+const api =
   ({ dispatch }) =>
   (next) =>
-  async (action: MiddlewareProps) => {
+  async (action) => {
     if (action.type !== "api/apiRequestBegan") return next(action);
     else {
       next(action);
@@ -58,7 +53,7 @@ const api: Middleware =
         if (onSuccess) {
           dispatch({ type: onSuccess, payload: response.data });
         }
-      } catch (error: any) {
+      } catch (error) {
         console.log(error);
         message.destroy("loading_msg");
 

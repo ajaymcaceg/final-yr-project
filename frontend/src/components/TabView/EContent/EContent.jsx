@@ -12,18 +12,14 @@ import {
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
-interface EContentFormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface EContentFormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-const EContent: React.FC<EContentFormProps> = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}) => {
-  const handleFormSubmit = (values: any) => {
+const EContent = ({ onSubmit, nextTab, setActiveKey }) => {
+  const handleFormSubmit = (values) => {
     console.log(values);
     onSubmit({ eContent: values });
     setActiveKey(nextTab);

@@ -13,18 +13,14 @@ import {
 
 const { TextArea } = Input;
 
-interface DesignationFormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface DesignationFormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-const Designation: React.FC<DesignationFormProps> = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}) => {
-  const handleFormSubmit = (values: any) => {
+const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
+  const handleFormSubmit = (values) => {
     onSubmit({ designation: values });
     setActiveKey(nextTab);
   };

@@ -8,7 +8,7 @@ import {
   SearchOutlined,
   ReconciliationOutlined,
 } from "@ant-design/icons";
-import { Image, MenuProps } from "antd";
+import { Image } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import { info } from "autoprefixer";
@@ -16,23 +16,16 @@ import { getRouteName } from "../../data/routeUtils";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>["items"][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
+function getItem(label, key, icon, children) {
   return {
     key,
     icon,
     children,
     label,
-  } as MenuItem;
+  };
 }
 
-const items: MenuItem[] = [
+const items = [
   getItem(
     "Add/Edit data",
     "dashboard",
@@ -84,7 +77,7 @@ const items: MenuItem[] = [
   ),
 ];
 
-export const Home: React.FC = () => {
+export const Home = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },

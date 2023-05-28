@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
 
 const apiSlice = createSlice({
@@ -7,10 +7,10 @@ const apiSlice = createSlice({
     value: "Test",
   },
   reducers: {
-    apiRequestSuccess: (state, action: PayloadAction<string>) => {
+    apiRequestSuccess: (state, action) => {
       // message.success(action.payload);
     },
-    apiRequestFailed: (state, action: PayloadAction<string>) => {
+    apiRequestFailed: (state, action) => {
       message.error(action.payload);
     },
   },

@@ -14,17 +14,17 @@ import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
-interface PersonalInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber?: string;
-  gender?: string;
-  dateOfBirth?: string;
-  currentAddress?: string;
-  permanentAddress?: string;
-  photo?: string;
-}
+// interface PersonalInfo {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   phoneNumber?: string;
+//   gender?: string;
+//   dateOfBirth?: string;
+//   currentAddress?: string;
+//   permanentAddress?: string;
+//   photo?: string;
+// }
 
 const formItemLayout = {
   labelCol: {
@@ -35,18 +35,14 @@ const formItemLayout = {
   },
 };
 
-interface FormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface FormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-export const PersonalInformation = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}: FormProps) => {
-  const onFinish = (values: any) => {
+export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
+  const onFinish = (values) => {
     // Handle form submission here
     console.log({
       personalInfo: {
@@ -62,7 +58,7 @@ export const PersonalInformation = ({
     setActiveKey(nextTab);
   };
 
-  const normFile = (e: any) => {
+  const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }

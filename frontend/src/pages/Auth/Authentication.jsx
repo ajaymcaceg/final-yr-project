@@ -14,11 +14,6 @@ import {
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
 import { useAppDispatch } from "../../state/hooks";
 
-import {
-  CredentialResponse,
-  GoogleLogin,
-  useGoogleLogin,
-} from "@react-oauth/google";
 import axios from "axios";
 
 const { Header, Content } = Layout;
@@ -27,20 +22,7 @@ export const Authentication = () => {
   const dispatch = useAppDispatch();
   const [useGoogleImgURL, setUseGoogleImgURL] = useState(true);
 
-  const onFinish = ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {};
-  const googleLogin = useGoogleLogin({
-    flow: "auth-code",
-    onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
-    },
-    onError: (errorResponse) => console.log(errorResponse),
-  });
+  const onFinish = ({ email, password }) => {};
 
   return (
     <div className="-mb-2">
@@ -116,27 +98,7 @@ export const Authentication = () => {
                 <div className="mx-4 text-sm text-slate-400">or</div>
                 <div className="w-1/6 border border-solid border-slate-200"></div>
               </div>
-              <div className="flex items-center justify-center  ">
-                <div
-                  className="w-[70%] transition-all duration-200 ease-in border-2 border-solid border-slate-200 flex items-center justify-center  cursor-pointer hover:bg-[#3A0088] hover:text-[#fff]"
-                  onClick={googleLogin}
-                  onMouseEnter={() => setUseGoogleImgURL(false)}
-                  onMouseLeave={() => setUseGoogleImgURL(true)}
-                >
-                  {useGoogleImgURL ? (
-                    <Image
-                      preview={false}
-                      src={"/src/assets/icons/google_icon.webp"}
-                      width={28}
-                      height={28}
-                    />
-                  ) : (
-                    <GoogleOutlined className="text-lg px-[5px]" />
-                  )}
-
-                  <div className="p-2 text-base">Continue with Google</div>
-                </div>
-              </div>
+              <div className="flex items-center justify-center  "></div>
             </Card>
           </div>
         </Col>

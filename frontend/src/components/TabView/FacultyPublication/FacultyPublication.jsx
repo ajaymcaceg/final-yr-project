@@ -2,20 +2,16 @@ import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
-interface FacultyPublicationFormProps {
-  onSubmit: (values: any) => void;
-  nextTab: string;
-  setActiveKey: (values: any) => void;
-}
+// interface FacultyPublicationFormProps {
+//   onSubmit: (values: any) => void;
+//   nextTab: string;
+//   setActiveKey: (values: any) => void;
+// }
 
-const FacultyPublication: React.FC<FacultyPublicationFormProps> = ({
-  onSubmit,
-  nextTab,
-  setActiveKey,
-}) => {
+const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
   const [form] = Form.useForm();
 
-  const handleFormSubmit = (values: any) => {
+  const handleFormSubmit = (values) => {
     onSubmit(values);
     setActiveKey(nextTab);
   };

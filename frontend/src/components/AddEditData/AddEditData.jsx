@@ -1,4 +1,4 @@
-import { RadioChangeEvent, message } from "antd";
+import { message } from "antd";
 import { Radio, Space, Tabs } from "antd";
 import React, { useState } from "react";
 import { PersonalInformation } from "../TabView/PersonalInformation/PersonalInformation";
@@ -17,15 +17,13 @@ import axios from "axios";
 import { ProjectSupervison } from "../TabView/Projects/ProjectsSupervison";
 const { TabPane } = Tabs;
 
-type TabPosition = "left" | "right" | "top" | "bottom";
-
 export const AddEditData = () => {
-  const [tabPosition, setTabPosition] = useState<TabPosition>("left");
+  const [tabPosition, setTabPosition] = useState("left");
   const [activeKey, setActiveKey] = useState("PersonalInfo");
   const [formData, setFormData] = useState({});
-  const changeTabPosition = (e: RadioChangeEvent) => {};
+  const changeTabPosition = (e) => {};
   const dispatch = useAppDispatch();
-  const onSave = (val: any) => {
+  const onSave = (val) => {
     console.log(val, URL);
     // axios
     //   .post(URL, sampleData)
@@ -39,8 +37,8 @@ export const AddEditData = () => {
     setFormData((data) => ({ ...data, ...val }));
   };
 
-  const onSubmit = (val: any) => {
-    let data: any = {};
+  const onSubmit = (val) => {
+    let data = {};
     // if (validateForm({ ...formData, ...val })) {
     if (true) {
       dispatch({
