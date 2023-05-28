@@ -27,5 +27,9 @@ export const getRouteName = () => {
       return route.name;
     }
   }
-  return pathname;
+  let removeSlash = pathname.replace("/", "");
+  let capName =
+    removeSlash.slice(0, 1).toUpperCase() +
+    removeSlash.slice(1, removeSlash.length).toLowerCase();
+  return pathname.length ? capName : pathname;
 };

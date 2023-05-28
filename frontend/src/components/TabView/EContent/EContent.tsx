@@ -1,5 +1,16 @@
 import React from "react";
-import { Form, Input, DatePicker, InputNumber, Button, Typography } from "antd";
+import {
+  Form,
+  Input,
+  DatePicker,
+  InputNumber,
+  Button,
+  Typography,
+  Row,
+  Col,
+  Radio,
+} from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 interface EContentFormProps {
   onSubmit: (values: any) => void;
@@ -13,6 +24,7 @@ const EContent: React.FC<EContentFormProps> = ({
   setActiveKey,
 }) => {
   const handleFormSubmit = (values: any) => {
+    console.log(values);
     onSubmit({ eContent: values });
     setActiveKey(nextTab);
   };
@@ -21,66 +33,87 @@ const EContent: React.FC<EContentFormProps> = ({
     <div>
       <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
-          <span className="text-white"> Personal Information</span>
+          <span className="text-white"> E Content</span>
         </Typography.Title>
       </div>
       <div className="w-full bg-[#7fc4fb] p-2">
-        <Form onFinish={handleFormSubmit}>
-          <Form.Item
-            name="title"
-            label="Title"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="domain"
-            label="Domain"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="developedFor"
-            label="Developed For"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="uploadedDate"
-            label="Uploaded Date"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <DatePicker />
-          </Form.Item>
-
-          <Form.Item
-            name="duration"
-            label="Duration"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <InputNumber />
-          </Form.Item>
-
-          <Form.Item
-            name="relevantDocumentsUsed"
-            label="Relevant Documents Used"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="link"
-            label="Link"
-            rules={[{ required: true, message: "Please enter value" }]}
-          >
-            <Input />
-          </Form.Item>
+        <Form onFinish={handleFormSubmit} layout="vertical">
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item label="E-Content's Title Developed" name="title">
+                <Input placeholder="Title" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="Domain" name="domain">
+                <Input placeholder="Domain" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={24}>
+              <Form.Item
+                label="Title E-Content Developed For"
+                name="developedFor"
+              >
+                <Radio.Group>
+                  <Radio style={{ display: "block" }} value="e-PG-Pathshala">
+                    e-PG-Pathshala
+                  </Radio>
+                  <Radio
+                    style={{ display: "block" }}
+                    value="CEC (Under Graduate)"
+                  >
+                    CEC (Under Graduate)
+                  </Radio>
+                  <Radio style={{ display: "block" }} value="SWAYAM">
+                    SWAYAM
+                  </Radio>
+                  <Radio style={{ display: "block" }} value="MOOCs platform">
+                    MOOCs platform
+                  </Radio>
+                  <Radio
+                    style={{ display: "block" }}
+                    value="NPTEL/NMEICT/any other Government initiatives"
+                  >
+                    NPTEL/NMEICT/any other Government initiatives
+                  </Radio>
+                  <Radio style={{ display: "block" }} value="institutional LMS">
+                    institutional LMS
+                  </Radio>
+                </Radio.Group>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="Uploaded Date" name="uploadedDate">
+                <DatePicker style={{ width: "100%" }} />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Duration" name="duration">
+                <Input placeholder="Duration" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={24}>
+              <Form.Item label="Link of the E-content" name="contentLink">
+                <Input placeholder="Content Link" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={24}>
+              <Form.Item
+                label="Link of the relevant documents used"
+                name="relevantDocumentsUsed"
+              >
+                <TextArea rows={4} placeholder="Description" />
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Form.Item>
             <Button type="primary" htmlType="submit">

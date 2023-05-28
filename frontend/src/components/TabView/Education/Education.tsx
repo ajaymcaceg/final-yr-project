@@ -1,6 +1,16 @@
 import React from "react";
-import { Form, Input, Select, Button, message, Typography } from "antd";
-
+import {
+  Form,
+  Input,
+  Select,
+  Button,
+  message,
+  Typography,
+  Col,
+  Row,
+  Upload,
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 interface EducationFormProps {
@@ -15,14 +25,20 @@ export const Education: React.FC<EducationFormProps> = ({
   nextTab,
 }) => {
   const handleFormSubmit = (values: any) => {
-    if (values?.universities?.length) {
-      onSubmit({
-        education: values,
-      });
-      setActiveKey(nextTab);
-    } else {
-      message.warning("Please add atleast 1 university degree");
-    }
+    onSubmit({ education: values });
+    setActiveKey(nextTab);
+    console.log("Form values:", values);
+  };
+
+  const getFileBase64Url = (file: any) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   };
 
   return (
@@ -33,79 +49,115 @@ export const Education: React.FC<EducationFormProps> = ({
         </Typography.Title>
       </div>
       <div className="w-full bg-[#7fc4fb] p-2">
-        <Form onFinish={handleFormSubmit}>
-          {/* <Form.Item name="type" label="Type">
-        <Select>
-          <Option value="UG">UG</Option>
-          <Option value="PG">PG</Option>
-          <Option value="PHD">PHD</Option>
-        </Select>
-      </Form.Item> */}
-
-          <Form.List name="universities">
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map((field, index) => (
-                  <div key={field.key}>
-                    <Form.Item
-                      label="Type"
-                      name={[field.name, "type"]}
-                      fieldKey={[field.fieldKey, "type"]}
-                      rules={[
-                        { required: true, message: "Please select the type" },
-                      ]}
-                    >
-                      <Select>
-                        <Option value="UG">UG</Option>
-                        <Option value="PG">PG</Option>
-                        <Option value="PHD">PHD</Option>
-                      </Select>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="University"
-                      name={[field.name, "university"]}
-                      fieldKey={[field.fieldKey, "university"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter the university",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Certificate"
-                      name={[field.name, "certificate"]}
-                      fieldKey={[field.fieldKey, "certificate"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter the certificate",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    {fields.length > 1 && (
-                      <div className="m-2 mb-6 flex justify-center">
-                        <Button onClick={() => remove(field.name)}>
-                          Remove
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-                <Form.Item>
-                  <Button onClick={() => add()}>Add University</Button>
-                </Form.Item>
-              </>
-            )}
-          </Form.List>
+        <Form onFinish={handleFormSubmit} layout="vertical">
+          <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="UG " name="ugName">
+                <Input placeholder="Name" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="University" name="ugUniversity">
+                <Input placeholder="University" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              {/* <Form.Item
+                label="Certificate"
+                name="ugCertificate"
+                valuePropName="fileList"
+                getValueFromEvent={(e) => {
+                  if (Array.isArray(e)) {
+                    return e;
+                  }
+                  return e && e.fileList;
+                }}
+              >
+                <Upload
+                  accept="image/*"
+                  multiple={false}
+                  maxCount={1}
+                  beforeUpload={() => false}
+                >
+                  <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
+                    Upload
+                  </Button>
+                </Upload>
+              </Form.Item> */}
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="PG " name="pgName">
+                <Input placeholder="Name" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="University" name="pgUniversity">
+                <Input placeholder="University" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Certificate"
+                name="pgCertificate"
+                valuePropName="fileList"
+                getValueFromEvent={(e) => {
+                  if (Array.isArray(e)) {
+                    return e;
+                  }
+                  return e && e.fileList;
+                }}
+              >
+                {/* <Upload
+                  accept="image/*"
+                  multiple={false}
+                  maxCount={1}
+                  beforeUpload={() => false}
+                >
+                  <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
+                    Upload
+                  </Button>
+                </Upload> */}
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="PhD " name="phdName">
+                <Input placeholder="Name" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="University" name="phdUniversity">
+                <Input placeholder="University" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Certificate"
+                name="phdCertificate"
+                valuePropName="fileList"
+                getValueFromEvent={(e) => {
+                  if (Array.isArray(e)) {
+                    return e;
+                  }
+                  return e && e.fileList;
+                }}
+              >
+                {/* <Upload
+                  accept="image/*"
+                  multiple={false}
+                  maxCount={1}
+                  beforeUpload={() => false}
+                >
+                  <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
+                    Upload
+                  </Button>
+                </Upload> */}
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Form.Item name="portfolioURL" label="Portfolio URL">
             <Input />

@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Form, Input, DatePicker, Switch, Button, Typography } from "antd";
+import {
+  Form,
+  Input,
+  DatePicker,
+  Switch,
+  Button,
+  Typography,
+  Radio,
+  Row,
+  Col,
+} from "antd";
 
 interface ExperienceFormProps {
   onSubmit: (values: any) => void;
@@ -43,13 +53,19 @@ const Experience: React.FC<ExperienceFormProps> = ({
           form={form}
           onFinish={handleFormSubmit}
           initialValues={{ experiences: [{}] }}
+          layout="vertical"
         >
           <Form.Item
-            name={"hasExperience"}
-            label="Has Experience"
-            valuePropName="checked"
+            name="hasExperience"
+            label="Any previous work experience"
+            rules={[{ required: true, message: "Please select an option" }]}
           >
-            <Switch onChange={(checked) => sethasExp(checked)} />
+            <Row>
+              <Radio.Group onChange={(e) => sethasExp(e.target.value)}>
+                <Radio value={true}>Yes</Radio>
+                <Radio value={false}>No</Radio>
+              </Radio.Group>
+            </Row>
           </Form.Item>
           {hasExp ? (
             <>
@@ -80,27 +96,38 @@ const Experience: React.FC<ExperienceFormProps> = ({
                           <Input />
                         </Form.Item>
 
-                        <Form.Item
-                          {...field}
-                          name={[field.name, "joiningDate"]}
-                          label="Joining Date"
-                          rules={[
-                            { required: true, message: "Please enter value" },
-                          ]}
-                        >
-                          <DatePicker />
-                        </Form.Item>
-
-                        <Form.Item
-                          {...field}
-                          name={[field.name, "leavingDate"]}
-                          label="Leaving Date"
-                          rules={[
-                            { required: true, message: "Please enter value" },
-                          ]}
-                        >
-                          <DatePicker />
-                        </Form.Item>
+                        <Row gutter={16}>
+                          <Col span={12}>
+                            <Form.Item
+                              {...field}
+                              name={[field.name, "joiningDate"]}
+                              label="Joining Date"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please enter value",
+                                },
+                              ]}
+                            >
+                              <DatePicker />
+                            </Form.Item>
+                          </Col>
+                          <Col span={12}>
+                            <Form.Item
+                              {...field}
+                              name={[field.name, "leavingDate"]}
+                              label="Leaving Date"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please enter value",
+                                },
+                              ]}
+                            >
+                              <DatePicker />
+                            </Form.Item>
+                          </Col>
+                        </Row>
 
                         <Form.Item
                           {...field}

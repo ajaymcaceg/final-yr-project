@@ -14,14 +14,18 @@ const personalInfoSchema = new mongoose.Schema({
 });
 
 const educationSchema = new mongoose.Schema({
-  universities: [
-    {
-      type: { type: String, enum: ["UG", "PG", "PHD"] },
-      university: { type: String },
-      certificate: { type: String },
-    },
-  ],
-  portfolioURL: { type: String },
+  ugName: String,
+  ugUniversity: String,
+  ugCertificate: String,
+  pgCertificate: String,
+
+  phdCertificate: String,
+
+  pgName: String,
+  pgUniversity: String,
+  phdName: String,
+  phdUniversity: String,
+  portfolioURL: String,
 });
 
 // Define schema for previous work experience
@@ -57,10 +61,10 @@ const designationSchema = new mongoose.Schema({
 const facultyPublicationSchema = new mongoose.Schema({
   booksPublished: { type: String },
   chaptersPublishedAndReferences: { type: String },
-  internationalJournals: { type: String },
-  nationalJournals: { type: String },
-  internationalConferences: { type: String },
-  nationalConferences: { type: String },
+  internationalOrNationalConferences: { type: String },
+  // nationalJournals: { type: String },
+  internationalOrNationalJournals: { type: String },
+  // nationalConferences: { type: String },
   patents: { type: String },
 });
 
@@ -73,7 +77,7 @@ const researchProjectSchema = new mongoose.Schema({
   duration: { type: Number },
   fundsProvided: { type: Number },
   relevantDocuments: { type: String },
-  details: { type: String },
+  // details: { type: String },
 });
 
 // Define schema for awards and recognition
@@ -81,11 +85,11 @@ const awardsRecognitionSchema = new mongoose.Schema({
   name: { type: String },
   receivedFrom: { type: String },
   recognizedUnder: { type: String },
-  level: { type: String },
+  // level: { type: String },
   year: { type: Number },
   incentivesReceived: { type: String },
   relevantDocuments: { type: String },
-  details: { type: String },
+  // details: { type: String },
 });
 
 // Define schema for e-content
@@ -96,7 +100,23 @@ const eContentSchema = new mongoose.Schema({
   uploadedDate: { type: Date },
   duration: { type: Number },
   relevantDocumentsUsed: { type: String },
-  link: { type: String },
+  contentLink: { type: String },
+});
+
+const phdSectionSchema = new mongoose.Schema({
+  studentsEnrolled: String,
+  awardsFellowship: String,
+  letterUpload: String,
+});
+
+const projectSchema = new mongoose.Schema({
+  ugInput: String,
+  ugThesisUpload: String,
+  pgInput: String,
+  pgUpload: String,
+  phdSections: [phdSectionSchema],
+  commonDescription: String,
+  contentLink: String,
 });
 
 // Define main schema for the entire document
@@ -105,6 +125,7 @@ const mainSchema = new mongoose.Schema({
   education: educationSchema,
   experience: experienceSchema,
   designation: designationSchema,
+  projects: projectSchema,
   facultyPublication: [facultyPublicationSchema],
   researchProjects: [researchProjectSchema],
   awardsRecognition: [awardsRecognitionSchema],

@@ -14,6 +14,7 @@ import { URL } from "../../env";
 import { validateForm } from "../../utils/validator";
 import { sampleData } from "../../constants/data";
 import axios from "axios";
+import { ProjectSupervison } from "../TabView/Projects/ProjectsSupervison";
 const { TabPane } = Tabs;
 
 type TabPosition = "left" | "right" | "top" | "bottom";
@@ -40,7 +41,8 @@ export const AddEditData = () => {
 
   const onSubmit = (val: any) => {
     let data: any = {};
-    if (validateForm({ ...formData, ...val })) {
+    // if (validateForm({ ...formData, ...val })) {
+    if (true) {
       dispatch({
         type: "api/apiRequestBegan",
         payload: {
@@ -142,6 +144,27 @@ export const AddEditData = () => {
             setActiveKey={setActiveKey}
           />
         </TabPane>
+
+        <TabPane
+          tab={
+            <>
+              <div
+                className={`text-base font-bold  p-2 text-black rounded-lg  px-3 w-[220px] ${
+                  activeKey == "Projects" ? "bg-white" : ""
+                }`}
+              >
+                Projects And Supervision
+              </div>
+            </>
+          }
+          key="Projects"
+        >
+          <ProjectSupervison
+            onSubmit={onSave}
+            nextTab={"FacultyPublication"}
+            setActiveKey={setActiveKey}
+          />
+        </TabPane>
         <TabPane
           tab={
             <>
@@ -190,7 +213,7 @@ export const AddEditData = () => {
                   activeKey == "AwardsANDRecognition" ? "bg-white" : ""
                 }`}
               >
-                Awards & Recognition
+                Awards
               </div>
             </>
           }

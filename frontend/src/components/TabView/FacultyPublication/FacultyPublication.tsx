@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 interface FacultyPublicationFormProps {
   onSubmit: (values: any) => void;
@@ -28,11 +29,11 @@ const FacultyPublication: React.FC<FacultyPublicationFormProps> = ({
     <div>
       <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
-          <span className="text-white"> Faculty Plublication</span>
+          <span className="text-white"> Faculty Publication</span>
         </Typography.Title>
       </div>
       <div className="w-full bg-[#7fc4fb] p-2">
-        <Form form={form} onFinish={handleFormSubmit}>
+        <Form form={form} onFinish={handleFormSubmit} layout="vertical">
           <Form.List name="facultyPublication">
             {(fields, { add, remove }) => (
               <>
@@ -45,6 +46,11 @@ const FacultyPublication: React.FC<FacultyPublicationFormProps> = ({
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(50% - 8px)",
+                      }}
+                      className="px-3"
                     >
                       <Input />
                     </Form.Item>
@@ -56,52 +62,43 @@ const FacultyPublication: React.FC<FacultyPublicationFormProps> = ({
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(50% - 8px)",
+                      }}
                     >
                       <Input />
                     </Form.Item>
 
                     <Form.Item
                       {...field}
-                      name={[field.name, "internationalJournals"]}
-                      label="International Journals"
+                      name={[field.name, "internationalOrNationalJournals"]}
+                      label="International/National Journals"
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(50% - 8px)",
+                      }}
+                      className="px-3"
                     >
-                      <Input />
+                      <TextArea rows={5} />
                     </Form.Item>
 
                     <Form.Item
                       {...field}
-                      name={[field.name, "nationalJournals"]}
-                      label="National Journals"
+                      name={[field.name, "internationalOrNationalConferences"]}
+                      label="International/national Conferences"
                       rules={[
                         { required: true, message: "Please enter value" },
                       ]}
+                      style={{
+                        display: "inline-block",
+                        width: "calc(50% - 8px)",
+                      }}
                     >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      {...field}
-                      name={[field.name, "internationalConferences"]}
-                      label="International Conferences"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      {...field}
-                      name={[field.name, "nationalConferences"]}
-                      label="National Conferences"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
-                    >
-                      <Input />
+                      <TextArea rows={5} />
                     </Form.Item>
 
                     <Form.Item
