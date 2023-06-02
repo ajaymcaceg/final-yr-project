@@ -9,7 +9,14 @@ import {
   Radio,
   Row,
   Col,
+  Upload,
 } from "antd";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
+import { UploadOutlined } from "@ant-design/icons";
 
 // interface ExperienceFormProps {
 //   onSubmit: (values: any) => void;
@@ -21,7 +28,13 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
   const [form] = Form.useForm();
   const [hasExp, sethasExp] = useState(false);
   const handleFormSubmit = (values) => {
-    onSubmit({ experience: values });
+    console.log(values);
+    onSubmit({
+      experience: {
+        hasExperience: values.hasExperience,
+        experiences: values.experiences,
+      },
+    });
     setActiveKey(nextTab);
   };
 
@@ -74,22 +87,65 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
                           {...field}
                           name={[field.name, "appointmentOrder"]}
                           label="Appointment Order"
-                          rules={[
-                            { required: true, message: "Please enter value" },
-                          ]}
+                          valuePropName="fileList"
+                          getValueFromEvent={(e) => {
+                            if (Array.isArray(e)) {
+                              return e;
+                            }
+                            return e && e.fileList;
+                          }}
                         >
-                          <Input />
+                          <Upload
+                            name="photo"
+                            action={CLOUDINARY_URL}
+                            listType="picture"
+                            data={(file) => ({
+                              upload_preset: CLOUDINARY_PRESET,
+                              api_key: CLOUDINARY_API_KEY,
+                              file,
+                            })}
+                            maxCount={1}
+                            multiple="false"
+                          >
+                            <Button
+                              icon={<UploadOutlined />}
+                              style={{ width: "100%" }}
+                            >
+                              Upload
+                            </Button>
+                          </Upload>
                         </Form.Item>
-
                         <Form.Item
                           {...field}
                           name={[field.name, "experienceCertificate"]}
                           label="Experience Certificate"
-                          rules={[
-                            { required: true, message: "Please enter value" },
-                          ]}
+                          valuePropName="fileList"
+                          getValueFromEvent={(e) => {
+                            if (Array.isArray(e)) {
+                              return e;
+                            }
+                            return e && e.fileList;
+                          }}
                         >
-                          <Input />
+                          <Upload
+                            name="photo"
+                            action={CLOUDINARY_URL}
+                            listType="picture"
+                            data={(file) => ({
+                              upload_preset: CLOUDINARY_PRESET,
+                              api_key: CLOUDINARY_API_KEY,
+                              file,
+                            })}
+                            maxCount={1}
+                            multiple="false"
+                          >
+                            <Button
+                              icon={<UploadOutlined />}
+                              style={{ width: "100%" }}
+                            >
+                              Upload
+                            </Button>
+                          </Upload>
                         </Form.Item>
 
                         <Row gutter={16}>

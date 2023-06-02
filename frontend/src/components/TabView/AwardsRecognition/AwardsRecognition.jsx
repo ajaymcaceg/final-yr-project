@@ -1,5 +1,19 @@
 import React from "react";
-import { Form, Input, InputNumber, Button, Typography, Radio } from "antd";
+import {
+  Form,
+  Input,
+  InputNumber,
+  Button,
+  Typography,
+  Radio,
+  Upload,
+} from "antd";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
+import { UploadOutlined } from "@ant-design/icons";
 
 // interface AwardsRecognitionFormProps {
 //   onSubmit: (values: any[]) => void;
@@ -117,7 +131,25 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                         { required: true, message: "Please enter value" },
                       ]}
                     >
-                      <Input />
+                      <Upload
+                        name="photo"
+                        action={CLOUDINARY_URL}
+                        listType="picture"
+                        data={(file) => ({
+                          upload_preset: CLOUDINARY_PRESET,
+                          api_key: CLOUDINARY_API_KEY,
+                          file,
+                        })}
+                        multiple="false"
+                        maxCount={1}
+                      >
+                        <Button
+                          icon={<UploadOutlined />}
+                          style={{ width: "100%" }}
+                        >
+                          Upload
+                        </Button>
+                      </Upload>
                     </Form.Item>
 
                     {fields.length > 1 && (

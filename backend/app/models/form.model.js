@@ -33,8 +33,8 @@ const experienceSchema = new mongoose.Schema({
   hasExperience: { type: Boolean, required: true },
   experiences: [
     {
-      appointmentOrder: { type: String },
-      experienceCertificate: { type: String },
+      appointmentOrder: { type: Array },
+      experienceCertificate: { type: Array },
       joiningDate: { type: Date },
       leavingDate: { type: Date },
       experience: { type: String },
@@ -48,11 +48,10 @@ const designationSchema = new mongoose.Schema({
   academicYear: { type: Number },
   semester: { type: String },
   courseTeaching: {
-    theory: { type: String },
-    laboratory: { type: String },
+    type: String,
   },
   additionalResponsibilities: {
-    order: { type: Number },
+    order: { type: Array },
     details: { type: String },
   },
 });
@@ -76,7 +75,7 @@ const researchProjectSchema = new mongoose.Schema({
   year: { type: Number },
   duration: { type: Number },
   fundsProvided: { type: Number },
-  relevantDocuments: { type: String },
+  relevantDocuments: { type: Array },
   // details: { type: String },
 });
 
@@ -88,7 +87,7 @@ const awardsRecognitionSchema = new mongoose.Schema({
   // level: { type: String },
   year: { type: Number },
   incentivesReceived: { type: String },
-  relevantDocuments: { type: String },
+  relevantDocuments: { type: Array },
   // details: { type: String },
 });
 
@@ -99,21 +98,21 @@ const eContentSchema = new mongoose.Schema({
   developedFor: { type: String },
   uploadedDate: { type: Date },
   duration: { type: Number },
-  relevantDocumentsUsed: { type: String },
+  relevantDocumentsUsed: { type: Array },
   contentLink: { type: String },
 });
 
 const phdSectionSchema = new mongoose.Schema({
   studentsEnrolled: String,
   awardsFellowship: String,
-  letterUpload: String,
+  letterUpload: Array,
 });
 
 const projectSchema = new mongoose.Schema({
   ugInput: String,
-  ugThesisUpload: String,
+  ugThesisUpload: Array,
   pgInput: String,
-  pgUpload: String,
+  pgUpload: Array,
   phdSections: [phdSectionSchema],
   commonDescription: String,
   contentLink: String,

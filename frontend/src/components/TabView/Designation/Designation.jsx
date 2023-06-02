@@ -10,6 +10,12 @@ import {
   Radio,
   Upload,
 } from "antd";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { TextArea } = Input;
 
@@ -21,7 +27,8 @@ const { TextArea } = Input;
 
 const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
   const handleFormSubmit = (values) => {
-    onSubmit({ designation: values });
+    console.log(values, "-");
+    onSubmit({ designation: [values] });
     setActiveKey(nextTab);
   };
 
@@ -98,7 +105,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
                 <TextArea />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            {/* <Col span={6}>
               <Form.Item
                 name={["additionalResponsibilities", "order"]}
                 label="Order"
@@ -106,18 +113,33 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               >
                 <InputNumber />
               </Form.Item>
-            </Col>
+            </Col> */}
             <Col span={6}>
               <Form.Item
-                name={["additionalResponsibilities", "upload"]}
-                label="Upload"
+                name={["additionalResponsibilities", "order"]}
+                label="Order"
                 // rules={[{ required: true, message: "Please upload a file" }]}
               >
-                <Button>Upload</Button>
+                <Upload
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
+                  multiple="false"
+                  maxCount={1}
+                >
+                  <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
+                    Upload
+                  </Button>
+                </Upload>
               </Form.Item>
             </Col>
           </Row>
-          <Form.List name="sections">
+          {/* <Form.List name="sections">
             {(fields, { add, remove }) => (
               <>
                 {fields.map((field, index) => (
@@ -156,12 +178,32 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
                           {...field}
                           name={[field.name, "letterUpload"]}
                           label="Letter Upload"
-                          // rules={[
-                          //   { required: true, message: "Please upload a file" },
-                          // ]}
+                          valuePropName="fileList"
+                          getValueFromEvent={(e) => {
+                            if (Array.isArray(e)) {
+                              return e;
+                            }
+                            return e && e.fileList;
+                          }}
                         >
-                          <Upload>
-                            <Button>Upload Letter</Button>
+                          <Upload
+                            name="photo"
+                            action={CLOUDINARY_URL}
+                            listType="picture"
+                            data={(file) => ({
+                              upload_preset: CLOUDINARY_PRESET,
+                              api_key: CLOUDINARY_API_KEY,
+                              file,
+                            })}
+                            maxCount={1}
+                            multiple="false"
+                          >
+                            <Button
+                              icon={<UploadOutlined />}
+                              style={{ width: "100%" }}
+                            >
+                              Upload
+                            </Button>
                           </Upload>
                         </Form.Item>
                       </Col>
@@ -182,7 +224,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
                 </Row>
               </>
             )}
-          </Form.List>
+          </Form.List> */}
           <Row gutter={16}>
             <Col span={24}>
               <Button type="primary" htmlType="submit" className="mt-5">

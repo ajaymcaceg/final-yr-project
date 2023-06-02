@@ -1,5 +1,19 @@
 import React from "react";
-import { Form, Input, InputNumber, Button, Typography, Radio } from "antd";
+import {
+  Form,
+  Input,
+  InputNumber,
+  Button,
+  Typography,
+  Radio,
+  Upload,
+} from "antd";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
+import { UploadOutlined } from "@ant-design/icons";
 
 const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
   const onFinish = (values) => {
@@ -110,7 +124,7 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     </Form.Item>
 
                     <Form.Item
-                      label="Funds Provided"
+                      label="Funds Provided (INR in lakhs)"
                       name={[field.name, "fundsProvided"]}
                       rules={[
                         { required: true, message: "Please enter value" },
@@ -134,7 +148,25 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                         width: "calc(66% - 8px)",
                       }}
                     >
-                      <Input />
+                      <Upload
+                        name="photo"
+                        action={CLOUDINARY_URL}
+                        listType="picture"
+                        data={(file) => ({
+                          upload_preset: CLOUDINARY_PRESET,
+                          api_key: CLOUDINARY_API_KEY,
+                          file,
+                        })}
+                        multiple="false"
+                        maxCount={1}
+                      >
+                        <Button
+                          icon={<UploadOutlined />}
+                          style={{ width: "100%" }}
+                        >
+                          Upload
+                        </Button>
+                      </Upload>
                     </Form.Item>
 
                     {fields.length > 1 && (

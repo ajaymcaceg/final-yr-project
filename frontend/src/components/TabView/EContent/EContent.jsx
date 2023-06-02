@@ -11,6 +11,7 @@ import {
   Radio,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import { UploadOutlined } from "@ant-design/icons";
 
 // interface EContentFormProps {
 //   onSubmit: (values: any) => void;

@@ -10,6 +10,12 @@ import {
   Typography,
 } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { TextArea } = Input;
 
@@ -49,10 +55,19 @@ export const ProjectSupervison = ({ onSubmit, nextTab, setActiveKey }) => {
             </Col>
             <Col span={12}>
               <Form.Item label="Upload Thesis" name="ugThesisUpload">
-                <Upload>
-                  <Button icon={<PlusOutlined />} type="dashed">
-                    Upload Thesis
-                  </Button>
+                <Upload
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
+                  multiple="false"
+                  maxCount={1}
+                >
+                  <Button style={{ width: "100%" }}>Upload</Button>
                 </Upload>
               </Form.Item>
             </Col>
@@ -65,8 +80,19 @@ export const ProjectSupervison = ({ onSubmit, nextTab, setActiveKey }) => {
             </Col>
             <Col span={12}>
               <Form.Item label="Upload" name="pgUpload">
-                <Upload>
-                  <Button icon={<PlusOutlined />} type="dashed">
+                <Upload
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
+                  multiple="false"
+                  maxCount={1}
+                >
+                  <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
                     Upload
                   </Button>
                 </Upload>
@@ -122,9 +148,23 @@ export const ProjectSupervison = ({ onSubmit, nextTab, setActiveKey }) => {
                           name={[field.name, "letterUpload"]}
                           fieldKey={[field.fieldKey, "letterUpload"]}
                         >
-                          <Upload>
-                            <Button icon={<PlusOutlined />} type="dashed">
-                              Upload Letter
+                          <Upload
+                            name="photo"
+                            action={CLOUDINARY_URL}
+                            listType="picture"
+                            data={(file) => ({
+                              upload_preset: CLOUDINARY_PRESET,
+                              api_key: CLOUDINARY_API_KEY,
+                              file,
+                            })}
+                            multiple="false"
+                            maxCount={1}
+                          >
+                            <Button
+                              icon={<UploadOutlined />}
+                              style={{ width: "100%" }}
+                            >
+                              Upload
                             </Button>
                           </Upload>
                         </Form.Item>

@@ -11,6 +11,11 @@ import {
   Typography,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
 
 const { Option } = Select;
 
@@ -49,6 +54,9 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
         ...values,
       },
     });
+    if (values.photo?.length) {
+      values.photo = values.photo[0]?.response?.secure_url;
+    }
     values.dateOfBirth = values?.dateOfBirth?.toISOString();
     onSubmit({
       personalInfo: {
@@ -62,6 +70,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
     if (Array.isArray(e)) {
       return e;
     }
+    console.log(e);
     return e && e.fileList;
   };
 
@@ -168,16 +177,31 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
             </Col>
           </Row>
 
-          {/* <Form.Item
-          label="Photo"
-          name="photo"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
-        >
-          <Upload name="photo" action="/upload" listType="picture">
-            <Button icon={<UploadOutlined />}>Click to upload</Button>
-          </Upload>
-        </Form.Item> */}
+          <Form.Item
+            label="Photo"
+            name="photo"
+            valuePropName="fileList"
+            getValueFromEvent={(e) => {
+              if (Array.isArray(e)) {
+                return e;
+              }
+              return e && e.fileList;
+            }}
+          >
+            <Upload
+              name="photo"
+              action={CLOUDINARY_URL}
+              listType="picture"
+              data={(file) => ({
+                upload_preset: CLOUDINARY_PRESET,
+                api_key: CLOUDINARY_API_KEY,
+                file,
+              })}
+              maxCount={1}
+            >
+              <Button icon={<UploadOutlined />}>Click to upload</Button>
+            </Upload>
+          </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit">

@@ -11,6 +11,11 @@ import {
   Upload,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_PRESET,
+  CLOUDINARY_URL,
+} from "../../../env";
 const { Option } = Select;
 
 // interface EducationFormProps {
@@ -21,6 +26,15 @@ const { Option } = Select;
 
 export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
   const handleFormSubmit = (values) => {
+    if (values.ugCertificate?.length) {
+      values.ugCertificate = values.ugCertificate[0]?.response?.secure_url;
+    }
+    if (values.pgCertificate?.length) {
+      values.pgCertificate = values.pgCertificate[0]?.response?.secure_url;
+    }
+    if (values.phdCertificate?.length) {
+      values.phdCertificate = values.phdCertificate[0]?.response?.secure_url;
+    }
     onSubmit({ education: values });
     setActiveKey(nextTab);
     console.log("Form values:", values);
@@ -58,7 +72,7 @@ export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              {/* <Form.Item
+              <Form.Item
                 label="Certificate"
                 name="ugCertificate"
                 valuePropName="fileList"
@@ -70,16 +84,22 @@ export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
                 }}
               >
                 <Upload
-                  accept="image/*"
-                  multiple={false}
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
+                  multiple="false"
                   maxCount={1}
-                  beforeUpload={() => false}
                 >
                   <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
                     Upload
                   </Button>
                 </Upload>
-              </Form.Item> */}
+              </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
@@ -105,16 +125,22 @@ export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
                   return e && e.fileList;
                 }}
               >
-                {/* <Upload
-                  accept="image/*"
-                  multiple={false}
+                <Upload
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
+                  multiple="false"
                   maxCount={1}
-                  beforeUpload={() => false}
                 >
                   <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
                     Upload
                   </Button>
-                </Upload> */}
+                </Upload>
               </Form.Item>
             </Col>
           </Row>
@@ -141,16 +167,22 @@ export const Education = ({ onSubmit, setActiveKey, nextTab }) => {
                   return e && e.fileList;
                 }}
               >
-                {/* <Upload
-                  accept="image/*"
-                  multiple={false}
+                <Upload
+                  name="photo"
+                  action={CLOUDINARY_URL}
+                  listType="picture"
+                  data={(file) => ({
+                    upload_preset: CLOUDINARY_PRESET,
+                    api_key: CLOUDINARY_API_KEY,
+                    file,
+                  })}
                   maxCount={1}
-                  beforeUpload={() => false}
+                  multiple="false"
                 >
                   <Button icon={<UploadOutlined />} style={{ width: "100%" }}>
                     Upload
                   </Button>
-                </Upload> */}
+                </Upload>
               </Form.Item>
             </Col>
           </Row>
