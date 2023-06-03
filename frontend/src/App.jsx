@@ -11,7 +11,7 @@ import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AddEditData } from "./components/AddEditData/AddEditData";
 import { SearchData } from "./components/SearchData/SearchData";
 import { Analytics } from "./components/Analytics/Analytics";
-
+import { AnalyticsView } from "./pages/AnalyticsView";
 function App() {
   // const isUserLoggediIn = isLoggedIn ? <Home /> : <Authentication />;
   // const navigate = useNavigate();
@@ -36,8 +36,12 @@ function App() {
         />
 
         <Route
-          path={routeNamePath[routeNames.ANALYTICS]}
+          path={routeNamePath[routeNames.VIEW_DATA]}
           element={<Analytics />}
+        />
+        <Route
+          path={routeNamePath[routeNames.ANALYTICS]}
+          element={<AnalyticsView />}
         />
         <Route path={routeNamePath[routeNames.PROFILE]} element={<Profile />} />
 

@@ -114,6 +114,8 @@ export const Home = () => {
               navigate("/search");
             } else if (info.key === "analytics") {
               navigate("/analytics");
+            } else if (info.key === "view_data") {
+              navigate("/view");
             }
           }}
         />
