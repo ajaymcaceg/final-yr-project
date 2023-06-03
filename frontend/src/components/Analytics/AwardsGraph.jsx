@@ -34,7 +34,7 @@ export const AwardsGraph = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="h-[300px]">
       <h2>Awards Received by Each Faculty</h2>
       {filteredData.length > 0 ? (
         <Bar data={chartData} options={chartOptions} />
