@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import { PDFDocument, StandardFonts } from "pdf-lib";
 import { saveAs } from "file-saver";
 import html2canvas from "html2canvas";
-import { Button } from "antd";
+import { Button, Descriptions, Image } from "antd";
 
-const generatePDF = async (data, imgData) => {
+const generatePDF = async (data, imgData, imgData1) => {
   // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
 
@@ -50,9 +50,18 @@ const generatePDF = async (data, imgData) => {
   const imageDims = image.scale(0.5);
   page.drawImage(image, {
     x: 10,
-    y: 200,
+    y: 0,
     width: imageDims.width,
     height: imageDims.height,
+  });
+  const page2 = pdfDoc.addPage();
+  const image1 = await pdfDoc.embedPng(imgData1);
+  const imageDims1 = image1.scale(0.5);
+  page2.drawImage(image1, {
+    x: 10,
+    y: 400,
+    width: imageDims1.width,
+    height: imageDims1.height,
   });
 
   // Save the PDF
@@ -62,12 +71,16 @@ const generatePDF = async (data, imgData) => {
 
 const FormPDFGenerator = ({ data }) => {
   const containerRef = useRef();
+  const containerRef2 = useRef();
 
   const handleGeneratePDF = async () => {
     try {
       const canvas = await html2canvas(containerRef.current);
       const imgData = canvas.toDataURL("image/png");
-      await generatePDF(data, imgData);
+
+      const canvas1 = await html2canvas(containerRef2.current);
+      const imgData1 = canvas1.toDataURL("image/png");
+      await generatePDF(data, imgData, imgData1);
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -90,7 +103,21 @@ const FormPDFGenerator = ({ data }) => {
             borderRadius: "5px",
           }}
         >
-          <h1 style={{ marginBottom: "20px" }}>NAAC form</h1>
+          <div className="flex items-center mb-10  justify-between">
+            <div>
+              <Image src="/icon/Logo.png" width={100} />
+            </div>
+            <div className="ml-10 flex justify-center flex-col items-center">
+              <h1 className="text-2xl">NAAC form</h1>
+              <h1 className="text-xl">Anna University, Chennai</h1>
+            </div>
+            <div>
+              <p className="text-xs">Phone : 2235 7078, 2235 7081</p>
+              <p className="text-xs">Fax : 91-44-2235-1956</p>
+              <p className="text-xs">Gram : ANNATECH</p>
+              <p className="text-xs">Email : registrar@annauniv.edu</p>
+            </div>
+          </div>
 
           {/* Personal Information */}
           <div
@@ -100,36 +127,36 @@ const FormPDFGenerator = ({ data }) => {
               marginBottom: "20px",
             }}
           >
-            <h2>Personal Information</h2>
-            <p>
-              <strong>First Name:</strong> {data.personalInfo?.firstName}
-            </p>
-            <p>
-              <strong>Last Name:</strong> {data.personalInfo?.lastName}
-            </p>
-            <p>
-              <strong>Email:</strong> {data.personalInfo?.email}
-            </p>
-            <p>
-              <strong>Phone Number:</strong> {data.personalInfo?.phoneNumber}
-            </p>
-            <p>
-              <strong>Gender:</strong> {data.personalInfo?.gender}
-            </p>
-            <p>
-              <strong>Date of Birth:</strong> {data.personalInfo?.dateOfBirth}
-            </p>
-            <p>
-              <strong>Current Address:</strong>{" "}
-              {data.personalInfo?.currentAddress}
-            </p>
-            <p>
-              <strong>Permanent Address:</strong>{" "}
-              {data.personalInfo?.permanentAddress}
-            </p>
-            {/* <p>
-            <strong>Photo:</strong> {data.personalInfo?.photo}
-          </p> */}
+            <h3>Personal Information</h3>
+            <Descriptions bordered column={1} className="mt-5">
+              <Descriptions.Item label="First Name">
+                {data.personalInfo?.firstName}
+              </Descriptions.Item>
+              <Descriptions.Item label="Last Name">
+                {data.personalInfo?.lastName}
+              </Descriptions.Item>
+              <Descriptions.Item label="Email">
+                {data.personalInfo?.email}
+              </Descriptions.Item>
+              <Descriptions.Item label="Phone Number">
+                {data.personalInfo?.phoneNumber}
+              </Descriptions.Item>
+              <Descriptions.Item label="Gender">
+                {data.personalInfo?.gender}
+              </Descriptions.Item>
+              <Descriptions.Item label="Date of Birth">
+                {data.personalInfo?.dateOfBirth}
+              </Descriptions.Item>
+              <Descriptions.Item label="Current Address">
+                {data.personalInfo?.currentAddress}
+              </Descriptions.Item>
+              <Descriptions.Item label="Permanent Address">
+                {data.personalInfo?.permanentAddress}
+              </Descriptions.Item>
+              {/* <Descriptions.Item label="Photo">
+      {data.personalInfo?.photo}
+    </Descriptions.Item> */}
+            </Descriptions>
           </div>
 
           {/* Education */}
@@ -274,116 +301,116 @@ const FormPDFGenerator = ({ data }) => {
                 </div>
               ))}
           </div>
+        </div>
+      </div>
 
-          {/* Research Projects */}
-          <div
-            style={{
-              borderBottom: "1px solid #ccc",
-              paddingBottom: "10px",
-              marginBottom: "20px",
-            }}
-          >
-            <h2>Research Projects</h2>
-            {data.researchProjects &&
-              data.researchProjects.map((project, index) => (
-                <div key={index}>
-                  <h3>Project {index + 1}</h3>
-                  <p>
-                    <strong>Name:</strong> {project.name}
-                  </p>
-                  <p>
-                    <strong>Funding Agency:</strong> {project.fundingAgency}
-                  </p>
-                  <p>
-                    <strong>Type:</strong> {project.type}
-                  </p>
-                  <p>
-                    <strong>Year:</strong> {project.year}
-                  </p>
-                  <p>
-                    <strong>Duration:</strong> {project.duration}
-                  </p>
-                  <p>
-                    <strong>Funds Provided:</strong> {project.fundsProvided}
-                  </p>
-                  {/* <p>
+      <div ref={containerRef2}>
+        {/* Research Projects */}
+        <div
+          style={{
+            borderBottom: "1px solid #ccc",
+            paddingBottom: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          <h2>Research Projects</h2>
+          {data.researchProjects &&
+            data.researchProjects.map((project, index) => (
+              <div key={index}>
+                <h3>Project {index + 1}</h3>
+                <p>
+                  <strong>Name:</strong> {project.name}
+                </p>
+                <p>
+                  <strong>Funding Agency:</strong> {project.fundingAgency}
+                </p>
+                <p>
+                  <strong>Type:</strong> {project.type}
+                </p>
+                <p>
+                  <strong>Year:</strong> {project.year}
+                </p>
+                <p>
+                  <strong>Duration:</strong> {project.duration}
+                </p>
+                <p>
+                  <strong>Funds Provided:</strong> {project.fundsProvided}
+                </p>
+                {/* <p>
                   <strong>Relevant Documents:</strong>{" "}
                   {project.relevantDocuments}
                 </p> */}
-                </div>
-              ))}
-          </div>
+              </div>
+            ))}
+        </div>
 
-          {/* Awards and Recognition */}
-          <div
-            style={{
-              borderBottom: "1px solid #ccc",
-              paddingBottom: "10px",
-              marginBottom: "20px",
-            }}
-          >
-            <h2>Awards and Recognition</h2>
-            {data.awardsRecognition &&
-              data.awardsRecognition.map((award, index) => (
-                <div key={index}>
-                  <h3>Award {index + 1}</h3>
-                  <p>
-                    <strong>Name:</strong> {award.name}
-                  </p>
-                  <p>
-                    <strong>Received From:</strong> {award.receivedFrom}
-                  </p>
-                  <p>
-                    <strong>Recognized Under:</strong> {award.recognizedUnder}
-                  </p>
-                  <p>
-                    <strong>Year:</strong> {award.year}
-                  </p>
-                  <p>
-                    <strong>Incentives Received:</strong>{" "}
-                    {award.incentivesReceived}
-                  </p>
-                  {/* <p>
+        {/* Awards and Recognition */}
+        <div
+          style={{
+            borderBottom: "1px solid #ccc",
+            paddingBottom: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          <h2>Awards and Recognition</h2>
+          {data.awardsRecognition &&
+            data.awardsRecognition.map((award, index) => (
+              <div key={index}>
+                <h3>Award {index + 1}</h3>
+                <p>
+                  <strong>Name:</strong> {award.name}
+                </p>
+                <p>
+                  <strong>Received From:</strong> {award.receivedFrom}
+                </p>
+                <p>
+                  <strong>Recognized Under:</strong> {award.recognizedUnder}
+                </p>
+                <p>
+                  <strong>Year:</strong> {award.year}
+                </p>
+                <p>
+                  <strong>Incentives Received:</strong>{" "}
+                  {award.incentivesReceived}
+                </p>
+                {/* <p>
                   <strong>Relevant Documents:</strong> {award.relevantDocuments}
                 </p> */}
-                </div>
-              ))}
-          </div>
+              </div>
+            ))}
+        </div>
 
-          {/* E-Content */}
-          <div
-            style={{
-              borderBottom: "1px solid #ccc",
-              paddingBottom: "10px",
-              marginBottom: "20px",
-            }}
-          >
-            <h2>E-Content</h2>
-            <p>
-              <strong>Title:</strong> {data.eContent?.title}
-            </p>
-            <p>
-              <strong>Domain:</strong> {data.eContent?.domain}
-            </p>
-            <p>
-              <strong>Developed For:</strong> {data.eContent?.developedFor}
-            </p>
-            <p>
-              <strong>Uploaded Date:</strong> {data.eContent?.uploadedDate}
-            </p>
-            <p>
-              <strong>Duration:</strong> {data.eContent?.duration}
-            </p>
-            {/* <p>
+        {/* E-Content */}
+        <div
+          style={{
+            borderBottom: "1px solid #ccc",
+            paddingBottom: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          <h2>E-Content</h2>
+          <p>
+            <strong>Title:</strong> {data.eContent?.title}
+          </p>
+          <p>
+            <strong>Domain:</strong> {data.eContent?.domain}
+          </p>
+          <p>
+            <strong>Developed For:</strong> {data.eContent?.developedFor}
+          </p>
+          <p>
+            <strong>Uploaded Date:</strong> {data.eContent?.uploadedDate}
+          </p>
+          <p>
+            <strong>Duration:</strong> {data.eContent?.duration}
+          </p>
+          {/* <p>
             <strong>Relevant Documents Used:</strong>{" "}
             {data.eContent?.relevantDocumentsUsed}
           </p> */}
-            <p>
-              <strong>Content Link:</strong> {data.eContent?.contentLink}
-            </p>
-          </div>
-
-          {/* Add other sections and fields as necessary */}
+          <p>
+            <strong>Content Link:</strong> {data.eContent?.contentLink}
+          </p>
         </div>
       </div>
     </div>
