@@ -50,10 +50,7 @@ const designationSchema = new mongoose.Schema({
   courseTeaching: {
     type: String,
   },
-  additionalResponsibilities: {
-    order: { type: Array },
-    details: { type: String },
-  },
+  additionalResponsibilities: { type: Object },
 });
 
 // Define schema for faculty publication
@@ -75,7 +72,7 @@ const researchProjectSchema = new mongoose.Schema({
   year: { type: Number },
   duration: { type: Number },
   fundsProvided: { type: Number },
-  relevantDocuments: { type: Array },
+  relevantDocuments: { type: Object },
   // details: { type: String },
 });
 

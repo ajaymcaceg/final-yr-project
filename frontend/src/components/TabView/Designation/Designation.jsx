@@ -28,6 +28,9 @@ const { TextArea } = Input;
 const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
   const handleFormSubmit = (values) => {
     console.log(values, "-");
+    // if (values?.additionalResponsibilities.order) {
+    //   values?.additionalResponsibilities.order = [values?.additionalResponsibilities.order];
+    // }
     onSubmit({ designation: [values] });
     setActiveKey(nextTab);
   };

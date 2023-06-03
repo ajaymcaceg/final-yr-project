@@ -10,6 +10,7 @@ import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AddEditData } from "./components/AddEditData/AddEditData";
 import { SearchData } from "./components/SearchData/SearchData";
+import { Analytics } from "./components/Analytics/Analytics";
 
 function App() {
   // const isUserLoggediIn = isLoggedIn ? <Home /> : <Authentication />;
@@ -34,6 +35,10 @@ function App() {
           element={<SearchData />}
         />
 
+        <Route
+          path={routeNamePath[routeNames.ANALYTICS]}
+          element={<Analytics />}
+        />
         <Route path={routeNamePath[routeNames.PROFILE]} element={<Profile />} />
 
         <Route path={"*"} element={<ErrorPage />} />

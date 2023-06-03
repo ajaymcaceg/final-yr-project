@@ -4,14 +4,17 @@ export enum routeNames {
   HOME = "Home",
   FORM = "Form",
   Search = "Search",
+
   PROFILE = "Profile",
   ANALYTICS = "Analytics",
+  VIEW_DATA = "view",
 }
 export const routeNamePath = {
   [routeNames.HOME]: "/",
   [routeNames.FORM]: "/form",
   [routeNames.Search]: "/search",
   [routeNames.ANALYTICS]: "/analytics",
+  [routeNames.VIEW_DATA]: "/view",
   [routeNames.PROFILE]: "/profile",
 };
 export const routePaths = [
@@ -19,6 +22,8 @@ export const routePaths = [
   { path: "/search", name: routeNames.Search },
 
   { path: "/analytics", name: routeNames.ANALYTICS },
+  { path: "/view", name: routeNames.VIEW_DATA },
+
   { path: "/form", name: routeNames.FORM },
 
   { path: "/profile", name: routeNames.PROFILE },

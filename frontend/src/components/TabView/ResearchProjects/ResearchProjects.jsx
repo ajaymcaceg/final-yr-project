@@ -26,7 +26,7 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
       {" "}
       <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
-          <span className="text-white"> Reasearch projects</span>
+          <span className="text-white"> Research projects</span>
         </Typography.Title>
       </div>
       <div className="w-full bg-[#7fc4fb] p-2">
@@ -140,9 +140,9 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Relevant Documents"
                       name={[field.name, "relevantDocuments"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(66% - 8px)",
