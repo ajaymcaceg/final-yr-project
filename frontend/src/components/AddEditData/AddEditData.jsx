@@ -15,12 +15,14 @@ import { validateForm } from "../../utils/validator";
 import { sampleData } from "../../constants/data";
 import axios from "axios";
 import { ProjectSupervison } from "../TabView/Projects/ProjectsSupervison";
+import { useNavigate } from "react-router-dom";
 const { TabPane } = Tabs;
 
 export const AddEditData = () => {
   const [tabPosition, setTabPosition] = useState("left");
   const [activeKey, setActiveKey] = useState("PersonalInfo");
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
   const changeTabPosition = (e) => {};
   const dispatch = useAppDispatch();
   const onSave = (val) => {
@@ -40,7 +42,7 @@ export const AddEditData = () => {
   const onSubmit = (val) => {
     let data = {};
     // if (validateForm({ ...formData, ...val })) {
-    if (true) {
+    if (formData.personalInfo && formData.education && formData.experience) {
       dispatch({
         type: "api/apiRequestBegan",
         payload: {
@@ -50,6 +52,10 @@ export const AddEditData = () => {
           method: "post",
           // onSuccess: "/updateSettings",
           onError: "api/apiRequestFailed",
+          callback: () => {
+            message.success("Form submitted successfully !");
+            navigate("/view");
+          },
         },
       });
     } else {

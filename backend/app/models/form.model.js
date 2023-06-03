@@ -50,7 +50,7 @@ const designationSchema = new mongoose.Schema({
   courseTeaching: {
     type: String,
   },
-  additionalResponsibilities: { type: Object },
+  additionalResponsibilities: { type: {} },
 });
 
 // Define schema for faculty publication
@@ -120,7 +120,7 @@ const mainSchema = new mongoose.Schema({
   personalInfo: personalInfoSchema,
   education: educationSchema,
   experience: experienceSchema,
-  designation: designationSchema,
+  designation: {},
   projects: projectSchema,
   facultyPublication: [facultyPublicationSchema],
   researchProjects: [researchProjectSchema],

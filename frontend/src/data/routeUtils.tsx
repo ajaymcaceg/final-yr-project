@@ -7,7 +7,7 @@ export enum routeNames {
 
   PROFILE = "Profile",
   ANALYTICS = "Analytics",
-  VIEW_DATA = "view",
+  VIEW_DATA = "View and download data",
 }
 export const routeNamePath = {
   [routeNames.HOME]: "/",

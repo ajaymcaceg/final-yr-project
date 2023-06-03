@@ -24,7 +24,10 @@ function App() {
   return (
     <Routes>
       <Route path={routeNamePath[routeNames.HOME]} element={<Home />}>
-        <Route path={routeNamePath[routeNames.HOME]} element={<Dashboard />} />
+        <Route
+          path={routeNamePath[routeNames.HOME]}
+          element={<AddEditData />}
+        />
         <Route
           path={routeNamePath[routeNames.FORM]}
           element={<AddEditData />}
