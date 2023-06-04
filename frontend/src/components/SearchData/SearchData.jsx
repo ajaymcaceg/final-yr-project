@@ -34,6 +34,7 @@ export const SearchData = () => {
           },
           ...d.personalInfo,
           ...d.facultyPublication[0],
+          ...d.designation,
         }));
         setdata(personalData);
       })
@@ -140,17 +141,36 @@ export const SearchData = () => {
       key: "phoneNumber",
       ...getColumnSearchProps("phoneNumber"),
     },
-
     {
-      title: "Books Published",
+      title: "Designation",
+      dataIndex: "designation",
+      key: "designation",
+      ...getColumnSearchProps("designation"),
+    },
+    {
+      title: "Books and Chapters Published",
       dataIndex: "booksPublished",
       key: "booksPublished",
+      render: (_, data) => {
+        console.log(_, data);
+
+        return (
+          <div>
+            <div>
+              <span className="font-semibold">Books published : </span>{" "}
+              <span>{data.booksPublished}</span>
+            </div>
+            <span className="font-bold">Chapters published : </span>{" "}
+            <span>{data.chaptersPublishedAndReferences}</span>
+          </div>
+        );
+      },
     },
-    {
-      title: "Chapters Published and References",
-      dataIndex: "chaptersPublishedAndReferences",
-      key: "chaptersPublishedAndReferences",
-    },
+    // {
+    //   title: "Chapters Published and References",
+    //   dataIndex: "chaptersPublishedAndReferences",
+    //   key: "chaptersPublishedAndReferences",
+    // },
     // {
     //   title: "International Journals",
     //   dataIndex: "internationalJournals",
