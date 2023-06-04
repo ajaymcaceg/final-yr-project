@@ -28,7 +28,9 @@ export const AnalyticsView = () => {
     <div className="p-4">
       <FacultyPerformance
         data={data.map((d) => ({
-          name: d?.personalInfo?.firstName || "No name",
+          name:
+            d?.personalInfo?.firstName + " " + d?.personalInfo?.lastName ||
+            "No name",
           ar: d?.awardsRecognition?.length,
           fp: d?.facultyPublication?.length,
           rp: d.researchProjects.length,
