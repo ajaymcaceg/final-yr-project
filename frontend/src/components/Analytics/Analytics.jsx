@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FormPDFGenerator from "../PDF/ShowPDFData";
 import { URL } from "../../env";
 import axios from "axios";
@@ -30,8 +30,25 @@ export const Analytics = () => {
       });
     return () => {};
   }, []);
+
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        if (window.location.hash) {
+          const targetElement = document.getElementById(
+            window.location.hash.replace("#", "")
+          );
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 3000);
+    } catch (error) {}
+  }, [data]);
   return (
     <div>
+      {/* <a href="#647cbec90b43bcc4c39b0f0a">Go to</a> */}
+      {/* <div className="h-[2000px]"></div> */}
       {showForm ? (
         <div>
           <div
@@ -47,9 +64,9 @@ export const Analytics = () => {
         </div>
       ) : (
         <>
-          {data.map((userData) => (
+          {data.map((userData, index) => (
             <Card className="cursor-pointer">
-              <div className="flex justify-between">
+              <div className="flex justify-between" id={userData._id}>
                 <div>
                   <div>{userData?.personalInfo?.firstName || "Empty"}</div>
 

@@ -127,9 +127,9 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       label="Relevant Documents"
                       name={[field.name, "relevantDocuments"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                     >
                       <Upload
                         name="photo"

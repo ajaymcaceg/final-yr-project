@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, Button, Space, Descriptions, InputNumber } from "antd";
+import {
+  Table,
+  Input,
+  Button,
+  Space,
+  Descriptions,
+  InputNumber,
+  Typography,
+} from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { URL } from "../../env";
+import { searchInData } from "../../constants/search";
+import { Link } from "react-router-dom";
 export const SearchData = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
 
   const [data, setdata] = useState([]);
+  const [filteredData, setfilteredData] = useState([]);
 
   const [filters, setFilters] = useState({ patents: null });
 
@@ -15,10 +26,11 @@ export const SearchData = () => {
     setFilters({ patents: value });
   };
 
-  const filteredData =
-    filters.patents !== null
-      ? data.filter((item) => item.patents > filters.patents)
-      : data;
+  useEffect(() => {
+    if (filters.patents !== null)
+      setfilteredData(data.filter((item) => item.patents > filters.patents));
+    else setfilteredData(data);
+  }, [data, filters]);
 
   useEffect(() => {
     axios
@@ -32,8 +44,11 @@ export const SearchData = () => {
             email: "",
             phoneNumber: "",
           },
+          _id: d._id,
+          name: d.personalInfo.firstName + " " + d.personalInfo.lastName,
           ...d.personalInfo,
-          ...d.facultyPublication[0],
+          facultyPublication: d.facultyPublication,
+          researchProjects: d.researchProjects,
           ...d.designation,
         }));
         setdata(personalData);
@@ -117,30 +132,30 @@ export const SearchData = () => {
 
   const columns = [
     {
-      title: "First Name",
-      dataIndex: "firstName",
+      title: "Name",
+      dataIndex: "name",
       key: "firstName",
 
       ...getColumnSearchProps("firstName"),
     },
-    {
-      title: "Last Name",
-      dataIndex: "lastName",
-      key: "lastName",
-      ...getColumnSearchProps("lastName"),
-    },
+    // {
+    //   title: "Last Name",
+    //   dataIndex: "lastName",
+    //   key: "lastName",
+    //   ...getColumnSearchProps("lastName"),
+    // },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
       ...getColumnSearchProps("email"),
     },
-    {
-      title: "Phone Number",
-      dataIndex: "phoneNumber",
-      key: "phoneNumber",
-      ...getColumnSearchProps("phoneNumber"),
-    },
+    // {
+    //   title: "Phone Number",
+    //   dataIndex: "phoneNumber",
+    //   key: "phoneNumber",
+    //   ...getColumnSearchProps("phoneNumber"),
+    // },
     {
       title: "Designation",
       dataIndex: "designation",
@@ -151,18 +166,50 @@ export const SearchData = () => {
       title: "Books and Chapters Published",
       dataIndex: "booksPublished",
       key: "booksPublished",
-      render: (_, data) => {
-        console.log(_, data);
+      render: (_, datau) => {
+        console.log(_, datau);
 
         return (
-          <div>
-            <div>
-              <span className="font-semibold">Books published : </span>{" "}
-              <span>{data.booksPublished}</span>
-            </div>
-            <span className="font-bold">Chapters published : </span>{" "}
-            <span>{data.chaptersPublishedAndReferences}</span>
-          </div>
+          <>
+            {datau.facultyPublication.map((data) => (
+              <div>
+                <div>
+                  <span className="font-semibold">Books published : </span>{" "}
+                  <span>{data.booksPublished}</span>
+                </div>
+                <span className="font-bold">Chapters published : </span>{" "}
+                <span>{data.chaptersPublishedAndReferences}</span>
+              </div>
+            ))}
+          </>
+        );
+      },
+    },
+
+    {
+      title: "Research Projects",
+      dataIndex: "researchProjects",
+      key: "researchProjects",
+      render: (_, datau) => {
+        console.log(_, datau);
+
+        return (
+          <>
+            {datau.researchProjects.map((data) => (
+              <div>
+                <div>
+                  <span className="font-semibold">Name : </span>{" "}
+                  <span>{data.name}</span>
+                </div>
+                <span className="font-bold">Year : </span>{" "}
+                <span>{data.year}</span>
+                <div>
+                  <span className="font-bold">Funds Provided : </span>{" "}
+                  <span>{data.fundsProvided}</span>
+                </div>
+              </div>
+            ))}
+          </>
         );
       },
     },
@@ -231,6 +278,31 @@ export const SearchData = () => {
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
       ),
     },
+    {
+      title: "View",
+      dataIndex: "publication",
+      key: "view_data",
+      render: (_, datau) => {
+        console.log(datau);
+        return (
+          <div>
+            <Link to={"/view" + "#" + datau._id}>
+              <Typography.Link
+                onClick={() => {
+                  // setTimeout(() => {
+                  //   const tempLink = document.createElement("a");
+                  //   tempLink.href = "#" + datau._id;
+                  //   tempLink.dispatchEvent(new MouseEvent("click"));
+                  // }, 0);
+                }}
+              >
+                View
+              </Typography.Link>
+            </Link>
+          </div>
+        );
+      },
+    },
     // {
     //   title: "Publications",
     //   dataIndex: "publication",
@@ -268,5 +340,30 @@ export const SearchData = () => {
     // },
   ];
 
-  return <Table dataSource={filteredData} columns={columns} />;
+  return (
+    <div className="mt-5 p-2">
+      <div className=" mb-4">
+        <Input.Search
+          size="large"
+          onChange={(e) => {
+            if (!e.target.value) {
+              setfilteredData(data);
+            }
+          }}
+          onSearch={(value) => {
+            if (value) {
+              let ids = searchInData(filteredData, value);
+              console.log(ids);
+              setfilteredData((dataTmp) =>
+                dataTmp.filter((d) => ids.includes(d._id))
+              );
+            } else {
+              setfilteredData(data);
+            }
+          }}
+        ></Input.Search>
+      </div>
+      <Table dataSource={filteredData} columns={columns} />
+    </div>
+  );
 };

@@ -90,7 +90,7 @@ const EContent = ({ onSubmit, nextTab, setActiveKey }) => {
             </Col>
             <Col span={8}>
               <Form.Item label="Duration" name="duration">
-                <Input placeholder="Duration" />
+                <InputNumber placeholder="Duration" />
               </Form.Item>
             </Col>
           </Row>
