@@ -66,7 +66,7 @@ export const AddEditData = () => {
       <Tabs
         tabPosition="left"
         activeKey={activeKey}
-        // onChange={(key) => setActiveKey(key)}
+        onChange={(key) => setActiveKey(key)}
       >
         <TabPane
           tab={
