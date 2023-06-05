@@ -76,12 +76,12 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
 
   return (
     <div>
-      <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
+      <div className="bg-slate-600 px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
           <span className="text-white"> Personal Information</span>
         </Typography.Title>
       </div>
-      <div className="w-full bg-[#7fc4fb] p-2">
+      <div className="w-full bg-slate-100 p-2">
         <Form onFinish={onFinish} layout="vertical" {...formItemLayout}>
           <Row>
             <Col span={12}>

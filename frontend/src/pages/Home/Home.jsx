@@ -91,7 +91,7 @@ export const Home = () => {
         // collapsible
         collapsed={true}
         onCollapse={(value) => setCollapsed(value)}
-        className="bg-blue-900"
+        // className="bg-blue-900"
       >
         <div
           style={{
@@ -121,7 +121,7 @@ export const Home = () => {
         />
       </Sider>
       <Layout className="site-layout">
-        <Header className="text-white  p-2 flex items-center pl-6 justify-between bg-[#4e44b5]">
+        <Header className="bg-white p-2 flex items-center pl-6 justify-between ">
           <div className="text-xl font-bold">{routeName}</div>
           <div className="text-lg mr-4">
             <UserOutlined />

@@ -34,14 +34,14 @@ export const ProjectSupervison = ({ onSubmit, nextTab, setActiveKey }) => {
 
   return (
     <div>
-      <div className="bg-[#4e44b5] px-2 pt-1 pb-[2px] mb-2 rounded-md">
+      <div className="bg-slate-600 px-2 pt-1 pb-[2px] mb-2 rounded-md">
         <Typography.Title level={2} className="text-white">
           <span className="text-white"> Projects and Supervision</span>
         </Typography.Title>
       </div>
 
       <Form onFinish={onFinish} layout="vertical">
-        <div className="w-full bg-[#7fc4fb] p-2">
+        <div className="w-full bg-slate-100 p-2">
           <Row gutter={16}>
             <Col span={24}>
               <h2>Projects</h2>
@@ -100,7 +100,7 @@ export const ProjectSupervison = ({ onSubmit, nextTab, setActiveKey }) => {
             </Col>
           </Row>
         </div>
-        <div className="w-full bg-[#7fc4fb] p-2 mt-3">
+        <div className="w-full bg-slate-100 p-2 mt-3">
           <Form.List name="phdSections">
             {(fields, { add, remove }) => (
               <>
