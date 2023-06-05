@@ -45,6 +45,21 @@ export const Analytics = () => {
       }, 3000);
     } catch (error) {}
   }, [data]);
+
+  useEffect(() => {
+    try {
+      if (window.location.hash) {
+        let id = window.location.hash.replace("#", "");
+        let d = data.filter((userData) => userData._id == id);
+        console.log("-------- data", data, id, d);
+        if (d.length) {
+          setcurrData(d[0]);
+          setshowForm(true);
+        }
+      }
+    } catch (error) {}
+  }, [data]);
+
   return (
     <div>
       {/* <a href="#647cbec90b43bcc4c39b0f0a">Go to</a> */}

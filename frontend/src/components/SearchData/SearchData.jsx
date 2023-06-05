@@ -44,12 +44,17 @@ export const SearchData = () => {
             email: "",
             phoneNumber: "",
           },
-          _id: d._id,
+          dataId: d._id,
           name: d.personalInfo.firstName + " " + d.personalInfo.lastName,
           ...d.personalInfo,
+          personalInfo: {
+            name: d.personalInfo.firstName + " " + d.personalInfo.lastName,
+            ...d.personalInfo,
+          },
           facultyPublication: d.facultyPublication,
           researchProjects: d.researchProjects,
           ...d.designation,
+          awardsRecognition: d.awardsRecognition,
         }));
         setdata(personalData);
       })
@@ -213,6 +218,34 @@ export const SearchData = () => {
         );
       },
     },
+
+    {
+      title: "Awards",
+      dataIndex: "awardsRecognition",
+      key: "awardsRecognition",
+      render: (_, datau) => {
+        console.log(_, datau);
+
+        return (
+          <>
+            {datau.awardsRecognition.map((data) => (
+              <div>
+                <div>
+                  <span className="font-semibold">Received from : </span>{" "}
+                  <span>{data.receivedFrom}</span>
+                </div>
+                <span className="font-bold">Year : </span>{" "}
+                <span>{data.year}</span>
+                <div>
+                  <span className="font-bold">Recognized Under : </span>{" "}
+                  <span>{data.recognizedUnder}</span>
+                </div>
+              </div>
+            ))}
+          </>
+        );
+      },
+    },
     // {
     //   title: "Chapters Published and References",
     //   dataIndex: "chaptersPublishedAndReferences",
@@ -286,12 +319,12 @@ export const SearchData = () => {
         console.log(datau);
         return (
           <div>
-            <Link to={"/view" + "#" + datau._id}>
+            <Link to={"/view" + "#" + datau.dataId}>
               <Typography.Link
                 onClick={() => {
                   // setTimeout(() => {
                   //   const tempLink = document.createElement("a");
-                  //   tempLink.href = "#" + datau._id;
+                  //   tempLink.href = "#" + datau.dataId;
                   //   tempLink.dispatchEvent(new MouseEvent("click"));
                   // }, 0);
                 }}
@@ -353,9 +386,12 @@ export const SearchData = () => {
           onSearch={(value) => {
             if (value) {
               let ids = searchInData(filteredData, value);
-              console.log(ids);
+              console.log(
+                ids,
+                data.map((d) => d.dataId)
+              );
               setfilteredData((dataTmp) =>
-                dataTmp.filter((d) => ids.includes(d._id))
+                data.filter((d) => ids.includes(d.dataId))
               );
             } else {
               setfilteredData(data);
