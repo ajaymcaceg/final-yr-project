@@ -125,10 +125,10 @@ const FormPDFGenerator = ({ data }) => {
               <h1 className="text-xl">Anna University, Chennai</h1>
             </div>
             <div>
-              <p className="text-xs">Phone : 2235 7078, 2235 7081</p>
+              {/* <p className="text-xs">Phone : 2235 7078, 2235 7081</p>
               <p className="text-xs">Fax : 91-44-2235-1956</p>
               <p className="text-xs">Gram : ANNATECH</p>
-              <p className="text-xs">Email : registrar@annauniv.edu</p>
+              <p className="text-xs">Email : registrar@annauniv.edu</p> */}
             </div>
           </div>
 
