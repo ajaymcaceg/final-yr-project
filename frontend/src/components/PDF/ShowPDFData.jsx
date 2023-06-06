@@ -59,7 +59,7 @@ const generatePDF = async (data, imgData, imgData1, imgData2) => {
   const imageDims1 = image1.scale(0.5);
   page2.drawImage(image1, {
     x: 10,
-    y: 300,
+    y: 250,
     width: imageDims1.width,
     height: imageDims1.height,
   });
@@ -69,7 +69,7 @@ const generatePDF = async (data, imgData, imgData1, imgData2) => {
   const imageDims2 = image1.scale(0.5);
   page3.drawImage(image2, {
     x: 10,
-    y: 300,
+    y: 250,
     width: imageDims2.width,
     height: imageDims2.height,
   });
@@ -121,7 +121,7 @@ const FormPDFGenerator = ({ data }) => {
               <Image src="/icon/Logo.png" width={100} />
             </div>
             <div className="ml-10 flex justify-center flex-col items-center">
-              <h1 className="text-2xl">NAAC form</h1>
+              <h1 className="text-2xl">Faculty Data</h1>
               <h1 className="text-xl">Anna University, Chennai</h1>
             </div>
             <div>
@@ -285,9 +285,6 @@ const FormPDFGenerator = ({ data }) => {
             </Descriptions.Item>
           ))}
         </Descriptions>
-      </div>
-      <div ref={containerRef3}>
-        {/* Research Projects */}
         <Descriptions
           title="Research Projects"
           bordered
@@ -306,6 +303,9 @@ const FormPDFGenerator = ({ data }) => {
             </Descriptions.Item>
           ))}
         </Descriptions>
+      </div>
+      <div ref={containerRef3}>
+        {/* Research Projects */}
 
         {/* Awards and Recognition */}
         <Descriptions
