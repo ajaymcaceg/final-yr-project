@@ -7,12 +7,21 @@ import {
   Descriptions,
   InputNumber,
   Typography,
+  Tabs,
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { URL } from "../../env";
 import { searchInData } from "../../constants/search";
 import { Link } from "react-router-dom";
+import MyTableComponent from "../Tables/Table316";
+import MyTableComponent2 from "../Tables/table321";
+import MyTableComponent3 from "../Tables/Table323";
+import WorkshopTable from "../Tables/Table332";
+import AwardsTable from "../Tables/Table333";
+import PatentTable from "../Tables/Table343";
+const { TabPane } = Tabs;
+
 export const SearchData = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -375,31 +384,64 @@ export const SearchData = () => {
 
   return (
     <div className="mt-5 p-2">
-      <div className=" mb-4">
-        <Input.Search
-          size="large"
-          onChange={(e) => {
-            if (!e.target.value) {
-              setfilteredData(data);
-            }
-          }}
-          onSearch={(value) => {
-            if (value) {
-              let ids = searchInData(filteredData, value);
-              console.log(
-                ids,
-                data.map((d) => d.dataId)
-              );
-              setfilteredData((dataTmp) =>
-                data.filter((d) => ids.includes(d.dataId))
-              );
-            } else {
-              setfilteredData(data);
-            }
-          }}
-        ></Input.Search>
-      </div>
-      <Table dataSource={filteredData} columns={columns} />
+      <Tabs defaultActiveKey="1">
+        {/* <TabPane tab="Tab 1" key="1"></TabPane> */}
+        <TabPane tab="Tab 1" key="2">
+          <div className=" mb-4">
+            <Input.Search
+              size="large"
+              onChange={(e) => {
+                if (!e.target.value) {
+                  setfilteredData(data);
+                }
+              }}
+              onSearch={(value) => {
+                if (value) {
+                  let ids = searchInData(filteredData, value);
+                  console.log(
+                    ids,
+                    data.map((d) => d.dataId)
+                  );
+                  setfilteredData((dataTmp) =>
+                    data.filter((d) => ids.includes(d.dataId))
+                  );
+                } else {
+                  setfilteredData(data);
+                }
+              }}
+            ></Input.Search>
+          </div>
+          <Table dataSource={filteredData} columns={columns} />
+        </TabPane>
+        <TabPane tab="Tab 2" key="3">
+          <MyTableComponent2 data={data} />
+        </TabPane>
+        <TabPane tab="Tab 3" key="4">
+          <MyTableComponent3 data={data} />
+        </TabPane>
+        <TabPane tab="Tab 4" key="5">
+          <WorkshopTable />{" "}
+        </TabPane>
+        <TabPane tab="Tab 5" key="6">
+          <AwardsTable data={data.map((d) => d.awardsRecognition)} />{" "}
+        </TabPane>
+        <TabPane tab="Tab 6" key="7">
+          <PatentTable
+            data={data.map((d, index) => ({
+              key: index,
+              teacherName:
+                d?.personalInfo?.firstName + " " + d?.personalInfo?.lastName,
+              patentNumber: d.facultyPublication.length
+                ? d.facultyPublication[0].patents
+                : "NA",
+              patentTitle: "NA",
+              year: "NA",
+            }))}
+          />{" "}
+        </TabPane>
+      </Tabs>
+
+      {/* <MyTableComponent data={data} /> */}
     </div>
   );
 };
