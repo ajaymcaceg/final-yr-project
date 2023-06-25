@@ -10,27 +10,27 @@ const AwardsTable = ({ data }) => {
     },
     {
       title: "Year of Award",
-      dataIndex: "year",
+      dataIndex: "awardYear",
       key: "year",
     },
     {
       title: "Title of the Innovation",
-      dataIndex: "name",
+      dataIndex: "innovationTitle",
       key: "name",
     },
     {
       title: "Name of the Awardee",
-      dataIndex: "receivedFrom",
+      dataIndex: "awardeeName",
       key: "receivedFrom",
     },
     {
       title: "Name of the Awarding Agency",
-      dataIndex: "recognizedUnder",
+      dataIndex: "awardingAgency",
       key: "recognizedUnder",
     },
     {
       title: "Category",
-      dataIndex: "incentivesReceived",
+      dataIndex: "category",
       key: "incentivesReceived",
     },
   ];

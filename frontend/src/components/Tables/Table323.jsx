@@ -74,10 +74,13 @@ const MyTableComponent3 = ({ data }) => {
 
   const columns = [
     {
-      title: "ID",
+      title: "Name",
       dataIndex: "_id",
       key: "id",
-      ...getColumnSearchProps("_id", "ID"),
+      width: 150,
+      render: (_,projects) =>{
+      return  projects?.personalInfo?.name
+      }
     },
     {
       title: "Name of the Scheme/Project/Endowments/Chairs",
@@ -92,20 +95,20 @@ const MyTableComponent3 = ({ data }) => {
           ? projects.map((project) => project.name).join(", ")
           : "NA",
     },
-    {
-      title:
-        "Name of the Principal Investigator/Co Investigator (if applicable)",
-      dataIndex: "designation",
-      key: "principalInvestigator",
-      ...getColumnSearchProps(
-        "designation",
-        "Name of the Principal Investigator/Co Investigator"
-      ),
-      render: (designation) =>
-        designation && designation.length > 0
-          ? designation.map((d) => d.designation).join(", ")
-          : "NA",
-    },
+    // {
+    //   title:
+    //     "Name of the Principal Investigator/Co Investigator (if applicable)",
+    //   dataIndex: "designation",
+    //   key: "principalInvestigator",
+    //   ...getColumnSearchProps(
+    //     "designation",
+    //     "Name of the Principal Investigator/Co Investigator"
+    //   ),
+    //   render: (designation) =>
+    //     designation && designation.length > 0
+    //       ? designation.map((d) => d.designation).join(", ")
+    //       : "NA",
+    // },
     {
       title: "Name of the Funding agency",
       dataIndex: "researchProjects",

@@ -16,6 +16,7 @@ import { sampleData } from "../../constants/data";
 import axios from "axios";
 import { ProjectSupervison } from "../TabView/Projects/ProjectsSupervison";
 import { useNavigate } from "react-router-dom";
+import { Extras } from "../TabView/Extras/Extras";
 const { TabPane } = Tabs;
 
 export const AddEditData = () => {
@@ -62,7 +63,7 @@ export const AddEditData = () => {
     }
   };
   return (
-    <div className="p-5">
+    <div className="p-5 overflow-y-auto h-[85%]">
       <Tabs
         tabPosition="left"
         activeKey={activeKey}
@@ -225,9 +226,31 @@ export const AddEditData = () => {
         >
           <AwardsRecognition
             onSubmit={onSave}
-            nextTab={"EContent"}
+            nextTab={"extras"}
             setActiveKey={setActiveKey}
           />
+        </TabPane>
+
+        <TabPane
+          tab={
+            <>
+              <div
+                className={`text-base font-bold  p-2 text-black rounded-lg  px-3 w-[200px] ${
+                  activeKey == "extras" ? "bg-white" : ""
+                }`}
+              >
+                Extras
+              </div>
+            </>
+          }
+          key="extras"
+        >
+          <Extras 
+           onSubmit={onSave}
+            nextTab={"EContent"}
+            setActiveKey={setActiveKey}
+            formData={formData}
+            />
         </TabPane>
         <TabPane
           tab={
@@ -249,6 +272,8 @@ export const AddEditData = () => {
             setActiveKey={setActiveKey}
           />
         </TabPane>
+
+    
       </Tabs>
     </div>
   );

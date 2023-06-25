@@ -4,12 +4,16 @@ import { Table, Input } from "antd";
 const { Search } = Input;
 
 const MyTableComponent2 = ({ data }) => {
+  console.log("****** ",data)
   const columns = [
     {
-      title: "ID",
+      title: "Name",
       dataIndex: "_id",
       key: "id",
       width: 150,
+      render: (_,projects) =>{
+      return  projects?.personalInfo?.name
+      }
     },
     {
       title: "Name of the Funding agency",

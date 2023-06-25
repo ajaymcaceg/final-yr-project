@@ -73,17 +73,17 @@ const WorkshopTable = ({ data }) => {
         text
       ),
   });
-
+console.log("Workship,",data)
   const columns = [
-    {
-      title: "ID",
-      dataIndex: "ID",
-      key: "ID",
-      ...getColumnSearchProps("ID", "ID"),
-    },
+    // {
+    //   title: "ID",
+    //   dataIndex: "ID",
+    //   key: "ID",
+    //   ...getColumnSearchProps("ID", "ID"),
+    // },
     {
       title: "Year",
-      dataIndex: "Year",
+      dataIndex: "workshopYear",
       key: "Year",
       ...getColumnSearchProps("Year", "Year"),
     },
@@ -95,15 +95,27 @@ const WorkshopTable = ({ data }) => {
     },
     {
       title: "Number of Participants",
-      dataIndex: "participants",
+      dataIndex: "participantCount",
       key: "participants",
       ...getColumnSearchProps("participants", "Participants"),
     },
     {
       title: "Date From – To",
-      dataIndex: "date",
+      dataIndex: "workshopDateRange",
       key: "date",
       ...getColumnSearchProps("date", "Date"),
+      render:(date)=>{
+
+        if(date){
+          if(date.length && date.length>1){
+
+            // return date[0]?.toISOString()+" - "+date[1]?.toISOString()
+
+          }
+        }
+        return "No data"
+
+      }
     },
     {
       title: "Link to the Activity report on the website",

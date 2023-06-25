@@ -126,6 +126,7 @@ const mainSchema = new mongoose.Schema({
   researchProjects: [researchProjectSchema],
   awardsRecognition: [awardsRecognitionSchema],
   eContent: eContentSchema,
+  extras:{},
 });
 
 // Create a model using the main schema

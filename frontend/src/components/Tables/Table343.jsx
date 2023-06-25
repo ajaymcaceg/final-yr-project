@@ -20,7 +20,7 @@ const PatentTable = ({ data }) => {
     },
     {
       title: "Year of Award/Publish",
-      dataIndex: "year",
+      dataIndex: "patentawardYear",
       key: "year",
     },
   ];

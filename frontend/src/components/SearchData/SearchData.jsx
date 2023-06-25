@@ -20,6 +20,10 @@ import MyTableComponent3 from "../Tables/Table323";
 import WorkshopTable from "../Tables/Table332";
 import AwardsTable from "../Tables/Table333";
 import PatentTable from "../Tables/Table343";
+import TeacherTable from "../TabView/Extras/Teacher/TeacherTable";
+import FellowshipTable from "../TabView/Extras/Fellowship/FellowshipTable";
+import ResearchFellowTable from "../TabView/Extras/ResearchFellow/ResearchFellow";
+import PhDTable from "../TabView/Extras/PhdScholar/PhdScholar";
 const { TabPane } = Tabs;
 
 export const SearchData = () => {
@@ -34,7 +38,7 @@ export const SearchData = () => {
   const handleFilterChange = (value) => {
     setFilters({ patents: value });
   };
-
+console.log("Main data",data)
   useEffect(() => {
     if (filters.patents !== null)
       setfilteredData(data.filter((item) => item.patents > filters.patents));
@@ -64,6 +68,7 @@ export const SearchData = () => {
           researchProjects: d.researchProjects,
           ...d.designation,
           awardsRecognition: d.awardsRecognition,
+          extras:d.extras
         }));
         setdata(personalData);
       })
@@ -181,7 +186,6 @@ export const SearchData = () => {
       dataIndex: "booksPublished",
       key: "booksPublished",
       render: (_, datau) => {
-        console.log(_, datau);
 
         return (
           <>
@@ -205,7 +209,6 @@ export const SearchData = () => {
       dataIndex: "researchProjects",
       key: "researchProjects",
       render: (_, datau) => {
-        console.log(_, datau);
 
         return (
           <>
@@ -233,7 +236,6 @@ export const SearchData = () => {
       dataIndex: "awardsRecognition",
       key: "awardsRecognition",
       render: (_, datau) => {
-        console.log(_, datau);
 
         return (
           <>
@@ -325,7 +327,6 @@ export const SearchData = () => {
       dataIndex: "publication",
       key: "view_data",
       render: (_, datau) => {
-        console.log(datau);
         return (
           <div>
             <Link to={"/view" + "#" + datau.dataId}>
@@ -386,7 +387,7 @@ export const SearchData = () => {
     <div className="mt-5 p-2">
       <Tabs defaultActiveKey="1">
         {/* <TabPane tab="Tab 1" key="1"></TabPane> */}
-        <TabPane tab="Tab 1" key="2">
+        <TabPane tab="Default" key="2">
           <div className=" mb-4">
             <Input.Search
               size="large"
@@ -398,10 +399,7 @@ export const SearchData = () => {
               onSearch={(value) => {
                 if (value) {
                   let ids = searchInData(filteredData, value);
-                  console.log(
-                    ids,
-                    data.map((d) => d.dataId)
-                  );
+                  
                   setfilteredData((dataTmp) =>
                     data.filter((d) => ids.includes(d.dataId))
                   );
@@ -413,19 +411,20 @@ export const SearchData = () => {
           </div>
           <Table dataSource={filteredData} columns={columns} />
         </TabPane>
-        <TabPane tab="Tab 2" key="3">
+        
+        <TabPane tab="Funding (3.2.1)" key="3">
           <MyTableComponent2 data={data} />
         </TabPane>
-        <TabPane tab="Tab 3" key="4">
+        <TabPane tab="Research Projects (3.2.3)" key="4">
           <MyTableComponent3 data={data} />
         </TabPane>
-        <TabPane tab="Tab 4" key="5">
-          <WorkshopTable />{" "}
+        <TabPane tab="Workshop (3.3.2)" key="5">
+          <WorkshopTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />{" "}
         </TabPane>
-        <TabPane tab="Tab 5" key="6">
-          <AwardsTable data={data.map((d) => d.awardsRecognition)} />{" "}
+        <TabPane tab="Awards" key="6">
+          <AwardsTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />{" "}
         </TabPane>
-        <TabPane tab="Tab 6" key="7">
+        <TabPane tab="Patents" key="7">
           <PatentTable
             data={data.map((d, index) => ({
               key: index,
@@ -438,6 +437,22 @@ export const SearchData = () => {
               year: "NA",
             }))}
           />{" "}
+        </TabPane>
+
+        <TabPane tab="Teacher" key="8">
+          <TeacherTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />
+        </TabPane>
+        <TabPane tab="Fellowship Award" key="9">
+          <FellowshipTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />
+        </TabPane>
+        {/* <TabPane tab="Awards" key="10">
+          <AwardsTable data={data.map((d)=>d?.extras||[])} />
+        </TabPane> */}
+        <TabPane tab="Research Fellow" key="11">
+          <ResearchFellowTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />
+        </TabPane>
+        <TabPane tab="PHD Table" key="12">
+          <PhDTable data={data.filter((d) => d.extras!=undefined).map((d)=>({...d.extras}))} />
         </TabPane>
       </Tabs>
 
