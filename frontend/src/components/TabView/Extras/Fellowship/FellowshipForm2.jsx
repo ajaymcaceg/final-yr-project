@@ -19,35 +19,35 @@ const FellowshipForm2 = ({ onSubmit, nextTab, setActiveKey,formData }) => {
       <Form.Item
         label="Name of the Research Fellow"
         name="researchFellowName"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="Year of Enrolment"
         name="yearOfEnrolment"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="Duration of Fellowship"
         name="fellowshipDuration"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="Type of the Fellowship"
         name="fellowshipType"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="Granting Agency"
         name="grantingAgency"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>

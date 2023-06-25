@@ -67,7 +67,7 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
           <Form.Item
             name="hasExperience"
             label="Any previous work experience"
-            rules={[{ required: true, message: "Please select an option" }]}
+            // rules={[{ required: true, message: "Please select an option" }]}
           >
             <Row>
               <Radio.Group onChange={(e) => sethasExp(e.target.value)}>
@@ -154,12 +154,12 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
                               {...field}
                               name={[field.name, "joiningDate"]}
                               label="Joining Date"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please enter value",
-                                },
-                              ]}
+                              // rules={[
+                              //   {
+                              //     required: true,
+                              //     message: "Please enter value",
+                              //   },
+                              // ]}
                             >
                               <DatePicker />
                             </Form.Item>
@@ -169,12 +169,12 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
                               {...field}
                               name={[field.name, "leavingDate"]}
                               label="Leaving Date"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please enter value",
-                                },
-                              ]}
+                              // rules={[
+                              //   {
+                              //     required: true,
+                              //     message: "Please enter value",
+                              //   },
+                              // ]}
                             >
                               <DatePicker />
                             </Form.Item>
@@ -185,9 +185,9 @@ const Experience = ({ onSubmit, nextTab, setActiveKey }) => {
                           {...field}
                           name={[field.name, "experience"]}
                           label="Experience"
-                          rules={[
-                            { required: true, message: "Please enter value" },
-                          ]}
+                          // rules={[
+                          //   { required: true, message: "Please enter value" },
+                          // ]}
                         >
                           <Input.TextArea />
                         </Form.Item>

@@ -39,9 +39,9 @@ const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       name={[field.name, "booksPublished"]}
                       label="Books Published"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -55,9 +55,9 @@ const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       name={[field.name, "chaptersPublishedAndReferences"]}
                       label="Chapters Published and References"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -70,9 +70,9 @@ const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       name={[field.name, "internationalOrNationalJournals"]}
                       label="International/National Journals"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -86,9 +86,9 @@ const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       name={[field.name, "internationalOrNationalConferences"]}
                       label="International/national Conferences"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -101,9 +101,9 @@ const FacultyPublication = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       name={[field.name, "patents"]}
                       label="Patents (if any)"
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                     >
                       <Input />
                     </Form.Item>

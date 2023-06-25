@@ -22,28 +22,28 @@ const TeacherForm = ({ onSubmit, nextTab, setActiveKey,formData }) => {
       <Form.Item
         name="seedTeacherName"
         label="Name of the teacher provided with seed money"
-        rules={[{ required: true, message: 'Please enter the teacher name' }]}
+        // rules={[{ required: true, message: 'Please enter the teacher name' }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         name="seedamount"
         label="The amount of seed money (INR in Lakhs)"
-        rules={[{ required: true, message: 'Please enter the seed money amount' }]}
+        // rules={[{ required: true, message: 'Please enter the seed money amount' }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         name="seedyear"
         label="Year of receiving"
-        rules={[{ required: true, message: 'Please enter the year of receiving' }]}
+        // rules={[{ required: true, message: 'Please enter the year of receiving' }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         name="link"
         label="Link to the policy document for Sanction of seed money / grants for research from the institution"
-        rules={[{ required: true, message: 'Please enter the document link' }]}
+        // rules={[{ required: true, message: 'Please enter the document link' }]}
       >
         <Input />
       </Form.Item>

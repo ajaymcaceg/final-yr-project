@@ -145,7 +145,7 @@ export const AddEditData = () => {
         >
           <Designation
             onSubmit={onSave}
-            nextTab={"FacultyPublication"}
+            nextTab={"Projects"}
             setActiveKey={setActiveKey}
           />
         </TabPane>

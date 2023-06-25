@@ -51,7 +51,7 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       label={`Name of the Award`}
                       name={[field.name, "name"]}
-                      rules={[{ required: true, message: "Please enter name" }]}
+                      // rules={[{ required: true, message: "Please enter name" }]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -65,12 +65,12 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       label="Received From"
                       name={[field.name, "receivedFrom"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter received from",
-                        },
-                      ]}
+                      // rules={[
+                      //   {
+                      //     required: true,
+                      //     message: "Please enter received from",
+                      //   },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -82,9 +82,9 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       label="Recognized Under"
                       {...field}
                       name={[field.name, "recognizedUnder"]}
-                      rules={[
-                        { required: true, message: "Please select an option" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please select an option" },
+                      // ]}
                     >
                       <Radio.Group>
                         <Radio value="state">State Level</Radio>
@@ -97,9 +97,9 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       label="Year"
                       name={[field.name, "year"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -112,9 +112,9 @@ const AwardsRecognition = ({ onSubmit, nextTab, setActiveKey }) => {
                       {...field}
                       label="Incentives Received"
                       name={[field.name, "incentivesReceived"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",

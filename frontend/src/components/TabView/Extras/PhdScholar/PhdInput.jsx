@@ -19,37 +19,37 @@ const PhdInput = ({ onSubmit, nextTab, setActiveKey,formData }) => {
       <Form.Item
         label="Name of the PhD Scholar"
         name="phdScholarName"
-        rules={[{ required: true }]}
+        // 
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="Name of the Department"
         name="departmentName"
-        rules={[{ required: true }]}
+        // 
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Name of the Guide/s" name="guideName" rules={[{ required: true }]}>
+      <Form.Item label="Name of the Guide/s" name="guideName" >
         <Input />
       </Form.Item>
-      <Form.Item label="Title of the Thesis" name="thesisTitle" rules={[{ required: true }]}>
+      <Form.Item label="Title of the Thesis" name="thesisTitle" >
         <Input />
       </Form.Item>
       <Form.Item
         label="Year of Registration"
         name="registrationYear"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Year of PhD Awarded" name="phdYear" rules={[{ required: true }]}>
+      <Form.Item label="Year of PhD Awarded" name="phdYear" >
         <Input />
       </Form.Item>
       <Form.Item
         label="Research Guide Recognition (Y/N)"
         name="researchGuideRecognition"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>

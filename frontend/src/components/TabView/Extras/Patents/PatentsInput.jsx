@@ -16,16 +16,16 @@ const PatentForm = ({ onSubmit, nextTab, setActiveKey,formData }) => {
 
   return (
     <Form form={form} onFinish={onFinish} layout="vertical">
-      <Form.Item label="Name of the Teacher" name="teacherName" rules={[{ required: true }]}>
+      <Form.Item label="Name of the Teacher" name="teacherName" >
         <Input />
       </Form.Item>
-      <Form.Item label="Patent Number" name="patentNumber" rules={[{ required: true }]}>
+      <Form.Item label="Patent Number" name="patentNumber" >
         <Input />
       </Form.Item>
-      <Form.Item label="Title of the Patent" name="patentTitle" rules={[{ required: true }]}>
+      <Form.Item label="Title of the Patent" name="patentTitle" >
         <Input />
       </Form.Item>
-      <Form.Item label="Year of Award / Publish of Patent" name="patentawardYear" rules={[{ required: true }]}>
+      <Form.Item label="Year of Award / Publish of Patent" name="patentawardYear" >
         <Input />
       </Form.Item>
       <Form.Item>

@@ -16,26 +16,26 @@ const AwardForm = ({ onSubmit, nextTab, setActiveKey,formData }) => {
 
   return (
     <Form form={form} onFinish={onFinish} layout="vertical">
-      <Form.Item label="Year of Award" name="awardYear" rules={[{ required: true }]}>
+      <Form.Item label="Year of Award" name="awardYear" >
         <Input />
       </Form.Item>
-      <Form.Item label="Title of the Innovation" name="innovationTitle" rules={[{ required: true }]}>
+      <Form.Item label="Title of the Innovation" name="innovationTitle" >
         <Input />
       </Form.Item>
-      <Form.Item label="Name of the Awardee" name="awardeeName" rules={[{ required: true }]}>
+      <Form.Item label="Name of the Awardee" name="awardeeName" >
         <Input />
       </Form.Item>
       <Form.Item
         label="Name of the Awarding Agency with Contact Details"
         name="awardingAgency"
-        rules={[{ required: true }]}
+        
       >
         <Input.TextArea rows={4} />
       </Form.Item>
       <Form.Item
         label="Category (Institution/Teacher/Research Scholar/Student)"
         name="category"
-        rules={[{ required: true }]}
+        
       >
         <Input />
       </Form.Item>

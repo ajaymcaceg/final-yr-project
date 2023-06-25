@@ -45,7 +45,7 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label={`Name of the research project`}
                       name={[field.name, "name"]}
-                      rules={[{ required: true, message: "Please enter name" }]}
+                      // rules={[{ required: true, message: "Please enter name" }]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -58,12 +58,12 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Funding Agency"
                       name={[field.name, "fundingAgency"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter funding agency",
-                        },
-                      ]}
+                      // rules={[
+                      //   {
+                      //     required: true,
+                      //     message: "Please enter funding agency",
+                      //   },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -75,9 +75,9 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Type"
                       name={[field.name, "type"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                     >
                       <Radio.Group className="ml-10">
                         <Radio style={{ display: "block" }} value="Government">
@@ -98,9 +98,9 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Year"
                       name={[field.name, "year"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(33% - 8px)",
@@ -112,9 +112,9 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Duration"
                       name={[field.name, "duration"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(33% - 8px)",
@@ -126,9 +126,9 @@ const ResearchProject = ({ onSubmit, nextTab, setActiveKey }) => {
                     <Form.Item
                       label="Funds Provided (INR in lakhs)"
                       name={[field.name, "fundsProvided"]}
-                      rules={[
-                        { required: true, message: "Please enter value" },
-                      ]}
+                      // rules={[
+                      //   { required: true, message: "Please enter value" },
+                      // ]}
                       style={{
                         display: "inline-block",
                         width: "calc(33% - 8px)",

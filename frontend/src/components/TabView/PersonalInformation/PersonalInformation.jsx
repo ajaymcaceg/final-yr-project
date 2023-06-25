@@ -113,10 +113,10 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Email"
                 name="email"
-                rules={[
-                  { required: true, message: "Please enter your email" },
-                  { type: "email", message: "Please enter a valid email" },
-                ]}
+                // rules={[
+                //   { required: true, message: "Please enter your email" },
+                //   { type: "email", message: "Please enter a valid email" },
+                // ]}
               >
                 <Input />
               </Form.Item>
@@ -125,7 +125,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Phone Number"
                 name="phoneNumber"
-                rules={[{ required: true, message: "Please input value" }]}
+                // rules={[{ required: true, message: "Please input value" }]}
               >
                 <Input />
               </Form.Item>
@@ -137,7 +137,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Gender"
                 name="gender"
-                rules={[{ required: true, message: "Please input value" }]}
+                // rules={[{ required: true, message: "Please input value" }]}
               >
                 <Select>
                   <Option value="male">Male</Option>
@@ -150,7 +150,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Date of Birth"
                 name="dateOfBirth"
-                rules={[{ required: true, message: "Please input value" }]}
+                // rules={[{ required: true, message: "Please input value" }]}
               >
                 <DatePicker style={{ width: "100%" }} />
               </Form.Item>
@@ -161,7 +161,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Current Address"
                 name="currentAddress"
-                rules={[{ required: true, message: "Please input value" }]}
+                // rules={[{ required: true, message: "Please input value" }]}
               >
                 <Input.TextArea />
               </Form.Item>
@@ -170,7 +170,7 @@ export const PersonalInformation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 label="Permanent Address"
                 name="permanentAddress"
-                rules={[{ required: true, message: "Please input value" }]}
+                // rules={[{ required: true, message: "Please input value" }]}
               >
                 <Input.TextArea />
               </Form.Item>

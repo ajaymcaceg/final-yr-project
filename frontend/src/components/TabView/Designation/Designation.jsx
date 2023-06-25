@@ -49,7 +49,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name="designation"
                 label="Designation"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <Input />
               </Form.Item>
@@ -60,7 +60,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name="academicYear"
                 label="Academic Year"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <InputNumber />
               </Form.Item>
@@ -69,7 +69,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name="semester"
                 label="Semester"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <Input />
               </Form.Item>
@@ -78,7 +78,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name="courseTeaching"
                 label="Course Teaching"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <Input />
               </Form.Item>
@@ -89,7 +89,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name="courseType"
                 // label="Course Teaching"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <Radio.Group>
                   <Radio value="theory">Theory</Radio>
@@ -103,7 +103,7 @@ const Designation = ({ onSubmit, nextTab, setActiveKey }) => {
               <Form.Item
                 name={["additionalResponsibilities", "details"]}
                 label="Details"
-                rules={[{ required: true, message: "Please enter value" }]}
+                // rules={[{ required: true, message: "Please enter value" }]}
               >
                 <TextArea />
               </Form.Item>
